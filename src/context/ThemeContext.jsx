@@ -6,6 +6,7 @@ export const useTheme = () => useContext(ThemeContext);
 
 export const ThemeProvider = ({ children }) => {
   const [isDarkMode, setIsDarkMode] = useState(true);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem('darkMode');
@@ -15,6 +16,8 @@ export const ThemeProvider = ({ children }) => {
   }, []);
 
   const toggleDarkMode = (event) => {
+    if (isTransitioning) return;
+
     const isAppearanceTransition =
       document.startViewTransition &&
       !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -27,6 +30,7 @@ export const ThemeProvider = ({ children }) => {
       return;
     }
 
+    setIsTransitioning(true);
     const x = event.clientX;
     const y = event.clientY;
     const endRadius = Math.hypot(
@@ -46,16 +50,22 @@ export const ThemeProvider = ({ children }) => {
         `circle(0px at ${x}px ${y}px)`,
         `circle(${endRadius}px at ${x}px ${y}px)`,
       ];
-      document.documentElement.animate(
+      const animation = document.documentElement.animate(
         {
           clipPath: clipPath,
         },
         {
-          duration: 500,
+          duration: 400,
           easing: 'ease-in-out',
           pseudoElement: '::view-transition-new(root)',
         }
       );
+      
+      animation.onfinish = () => setIsTransitioning(false);
+    });
+
+    transition.finished.finally(() => {
+      if (!isTransitioning) setIsTransitioning(false);
     });
   };
 
