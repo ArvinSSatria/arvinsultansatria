@@ -30,6 +30,13 @@
   .animate-marquee {
     animation: marquee 20s linear infinite;
   }
+
+  .gpu-accelerate {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    will-change: transform, opacity;
+  }
 }
 
 @keyframes marquee {
@@ -46,6 +53,7 @@
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+  will-change: clip-path;
 }
 
 ::view-transition-old(root) {

@@ -101,7 +101,7 @@ const Navbar = () => {
         )}
 
         {isMobileOpen && (
-          <div className="mx-4 mb-4 p-3 rounded-2xl bg-white/95 dark:bg-zinc-900/95 border border-zinc-200 dark:border-zinc-800 backdrop-blur-xl shadow-2xl">
+          <div className="mx-4 mb-4 p-3 rounded-2xl bg-white/98 dark:bg-zinc-900/98 border border-zinc-200 dark:border-zinc-800 backdrop-blur-sm shadow-2xl gpu-accelerate">
             <div className="flex justify-between items-center mb-2 px-2">
               <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">navigation</span>
               <button

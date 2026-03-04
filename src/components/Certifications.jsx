@@ -103,7 +103,7 @@ const Certifications = () => {
                 </div>
                 {/* Back */}
                 <div 
-                  className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl border border-zinc-200 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900/95 backdrop-blur-md p-6 flex flex-col justify-between shadow-xl transition-opacity duration-300 ${
+                  className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl border border-zinc-200 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900/95 p-6 flex flex-col justify-between shadow-xl transition-opacity duration-300 ${
                     activeId === cert.id ? 'opacity-100' : 'opacity-0'
                   }`}
                 >

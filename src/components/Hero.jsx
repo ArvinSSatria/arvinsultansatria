@@ -37,8 +37,8 @@ const Hero = () => {
       {/* Subtle grid background */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(0,0,0,.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.02)_1px,transparent_1px)] bg-[size:64px_64px]" />
       {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-zinc-500/5 dark:bg-zinc-400/5 rounded-full blur-[128px]" />
-      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-zinc-400/5 dark:bg-zinc-500/5 rounded-full blur-[128px]" />
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-zinc-500/5 dark:bg-zinc-400/5 rounded-full blur-3xl md:blur-[128px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-zinc-400/5 dark:bg-zinc-500/5 rounded-full blur-3xl md:blur-[128px] pointer-events-none" />
 
       <div className="relative z-10 max-w-5xl mx-auto px-6 py-20 text-center">
         <motion.div
