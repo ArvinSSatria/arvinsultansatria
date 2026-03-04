@@ -80,12 +80,16 @@ const Certifications = () => {
         </motion.div>
       </div>
 
-      {/* Mobile View: Static Grid */}
-      <div className="md:hidden px-6">
+      {/* Mobile View: Animated List */}
+      <div className="md:hidden px-6 pb-12">
         <div className="grid grid-cols-1 gap-8">
-          {certificates.map((cert) => (
-            <div
+          {certificates.map((cert, index) => (
+            <motion.div
               key={cert.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
               className="aspect-[16/10] perspective-1000 cursor-pointer"
               onClick={() => setActiveId(activeId === cert.id ? null : cert.id)}
             >
@@ -120,7 +124,7 @@ const Certifications = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
