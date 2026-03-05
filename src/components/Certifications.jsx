@@ -1,60 +1,11 @@
 import { motion } from 'framer-motion';
 import { FaCalendarAlt, FaAward } from 'react-icons/fa';
 import { useState } from 'react';
+import { portfolioData } from '../data/portfolioData';
 
 const Certifications = () => {
   const [activeId, setActiveId] = useState(null);
-
-  const certificates = [
-    {
-      id: 1,
-      title: 'Certificate Bangkit Academy',
-      date: 'July 2024',
-      description: 'Successfully completed the Bangkit Academy 2024 program.',
-      image: '/certificates/[Bangkit 2024 Batch 2] Certificate.jpg',
-      tags: ['Team Leadership', 'Capstone Project'],
-    },
-    {
-      id: 2,
-      title: 'Sertifikat Course Bangkit Academy',
-      date: '2024',
-      description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_kedua.jpg',
-      tags: ['Course', 'Bangkit Academy'],
-    },
-    {
-      id: 3,
-      title: 'Sertifikat Course Bangkit Academy',
-      date: '2024',
-      description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_ketiga.jpg',
-      tags: ['Course', 'Bangkit Academy'],
-    },
-    {
-      id: 4,
-      title: 'Sertifikat Course Bangkit Academy',
-      date: '2024',
-      description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_keempat.jpg',
-      tags: ['Course', 'Bangkit Academy'],
-    },
-    {
-      id: 5,
-      title: 'Sertifikat Course Bangkit Academy',
-      date: '2024',
-      description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_kelima.jpg',
-      tags: ['Course', 'Bangkit Academy'],
-    },
-    {
-      id: 6,
-      title: 'Sertifikat Course Bangkit Academy',
-      date: '2024',
-      description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_keenam.jpg',
-      tags: ['Course', 'Bangkit Academy'],
-    },
-  ];
+  const { certificates } = portfolioData;
 
   // Duplicate for desktop marquee
   const duplicated = [...certificates, ...certificates, ...certificates];
@@ -90,8 +41,18 @@ const Certifications = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="aspect-[16/10] perspective-1000 cursor-pointer"
+              className="aspect-[16/10] perspective-1000 cursor-pointer outline-none focus-within:ring-2 focus-within:ring-accent/50 rounded-2xl"
               onClick={() => setActiveId(activeId === cert.id ? null : cert.id)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveId(activeId === cert.id ? null : cert.id);
+                }
+              }}
+              aria-label={`Certificate: ${cert.title}. Tap to flip for details.`}
+              aria-expanded={activeId === cert.id}
             >
               <div
                 className={`relative w-full h-full [transform-style:preserve-3d] transition-transform duration-700 ${
@@ -100,7 +61,7 @@ const Certifications = () => {
               >
                 {/* Front */}
                 <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800/50 bg-zinc-100 dark:bg-zinc-900/50 shadow-sm">
-                  <img src={cert.image} alt={cert.title} className="w-full h-full object-cover" />
+                  <img src={cert.image} alt="" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/0 active:bg-black/10 transition-colors">
                     <span className="text-[10px] text-white/40 font-mono">Tap to flip</span>
                   </div>
@@ -114,7 +75,7 @@ const Certifications = () => {
                   <div>
                     <FaAward className="w-6 h-6 text-accent mb-3" />
                     <h3 className="text-base font-bold text-zinc-900 dark:text-zinc-100 mb-1">{cert.title}</h3>
-                    <div className="flex items-center gap-1.5 text-xs font-mono text-accent/70 mb-3"><FaCalendarAlt />{cert.date}</div>
+                    <div className="flex items-center gap-1.5 text-xs font-mono text-accent/70 mb-3"><span className="sr-only">Date:</span><FaCalendarAlt />{cert.date}</div>
                     <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-4">{cert.description}</p>
                   </div>
                   <div className="flex flex-wrap gap-1">
@@ -139,7 +100,8 @@ const Certifications = () => {
           {duplicated.map((cert, index) => (
             <div
               key={`${cert.id}-${index}`}
-              className="flex-shrink-0 w-[520px] aspect-[16/10] perspective-2000 group cursor-default"
+              className="flex-shrink-0 w-[520px] aspect-[16/10] perspective-2000 group cursor-default outline-none"
+              aria-label={`Certificate: ${cert.title}`}
             >
               {/* Flip container */}
               <div className="relative w-full h-full [transform-style:preserve-3d] transition-transform duration-700 group-hover:[transform:rotateY(180deg)]">

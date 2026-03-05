@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedinIn, FaInstagram, FaArrowDown } from 'react-icons/fa';
-import { SiThreads } from 'react-icons/si';
+import { FaArrowDown } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import { portfolioData } from '../data/portfolioData';
 
 const Hero = () => {
-  const roles = ["Frontend Developer", "UI/UX Enthusiast", "Creative Coder", "Tech Explorer"];
+  const { personal } = portfolioData;
+  const roles = personal.roles;
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
   const [currentText, setCurrentText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
@@ -49,21 +50,6 @@ const Hero = () => {
             visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
           }}
         >
-          {/* Image Profile */}
-          {/* <motion.div
-            variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1 } }}
-            className="relative w-28 h-28 md:w-32 md:h-32 mx-auto mb-8"
-          >
-            <div className="absolute inset-0 bg-accent/20 rounded-full blur-2xl animate-pulse" />
-            <div className="relative w-full h-full rounded-full border-2 border-zinc-200 dark:border-zinc-800 overflow-hidden bg-zinc-100 dark:bg-zinc-800 shadow-xl group cursor-pointer">
-              <img
-                src="/profile.jpg"
-                alt="Arvin Sultan Satria"
-                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 scale-100 group-hover:scale-110"
-              />
-            </div>
-          </motion.div> */}
-
           {/* Status badge */}
           <motion.div
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
@@ -78,9 +64,9 @@ const Hero = () => {
             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9] mb-6"
           >
-            <span className="text-zinc-900 dark:text-zinc-100">Arvin</span>
+            <span className="text-zinc-900 dark:text-zinc-100">{personal.name.split(' ')[0]}</span>
             <br />
-            <span className="text-zinc-400 dark:text-zinc-500">Sultan Satria</span>
+            <span className="text-zinc-400 dark:text-zinc-500">{personal.name.split(' ').slice(1).join(' ')}</span>
           </motion.h1>
 
           {/* Typing role */}
@@ -115,10 +101,12 @@ const Hero = () => {
               View My Work
             </a>
             <a
-              href="/cv-arvin.pdf"
+              href={personal.cvPath}
               target="_blank"
               rel="noreferrer"
+              download
               className="px-7 py-3.5 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 font-medium text-sm hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-all duration-300"
+              aria-label="Download Curriculum Vitae"
             >
               Download CV
             </a>
@@ -129,18 +117,14 @@ const Hero = () => {
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
             className="flex items-center justify-center gap-4"
           >
-            {[
-              { href: "https://github.com/ArvinSSatria", icon: FaGithub },
-              { href: "https://www.linkedin.com/in/arvin-sultan-satria/", icon: FaLinkedinIn },
-              { href: "https://www.instagram.com/arvinssatria/", icon: FaInstagram },
-              { href: "https://www.threads.com/@arvinssatria", icon: SiThreads },
-            ].map((s, i) => (
+            {portfolioData.socials.map((s, i) => (
               <a
                 key={i}
                 href={s.href}
                 target="_blank"
                 rel="noreferrer"
                 className="p-3 rounded-full border border-zinc-200 dark:border-zinc-800/50 text-zinc-400 dark:text-zinc-500 hover:text-accent hover:border-accent/30 transition-all duration-300"
+                aria-label={`Visit ${s.name}`}
               >
                 <s.icon className="w-4 h-4" />
               </a>
@@ -155,7 +139,11 @@ const Hero = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
         >
-          <a href="#about" className="flex flex-col items-center gap-2 text-zinc-400 dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors">
+          <a
+            href="#about"
+            className="flex flex-col items-center gap-2 text-zinc-400 dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
+            aria-label="Scroll to about section"
+          >
             <span className="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
             <FaArrowDown className="w-3 h-3 animate-bounce" />
           </a>

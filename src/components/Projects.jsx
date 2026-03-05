@@ -1,39 +1,9 @@
 import { motion } from 'framer-motion';
 import { FaArrowRight, FaExternalLinkAlt } from 'react-icons/fa';
+import { portfolioData } from '../data/portfolioData';
 
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Modern Landing Page",
-      subtitle: "Camping Equipment Rental",
-      description: "A clean, responsive landing page for a digital agency focused on beautiful UX and conversion.",
-      image: "/web1.png",
-      link: "https://www.figma.com/design/dUAfipsJYOyx4I62etFoMc/Website-Camping?node-id=0-1&t=hfqaNfDEpRPGl0U1-1",
-      preview: "https://campingrental.freesite.online/",
-      tags: ["Figma", "UI/UX", "Responsive"],
-    },
-    {
-      id: 2,
-      title: "FitDaily Mobile App",
-      subtitle: "Fitness Tracking Prototype",
-      description: "A complete UI/UX concept for a fitness app with workout tracking and social features.",
-      image: "/app2.png",
-      link: "https://www.figma.com/design/yXFGm8yhY5zbnXNWvFkF3R/Prototype-FitDaily?node-id=0-1&t=FYxKeYMmy0WQAVtu-1",
-      preview: "https://www.figma.com/proto/yXFGm8yhY5zbnXNWvFkF3R/Prototype-FitDaily?node-id=0-1&t=WbPKpEsc2klb6tx6-1",
-      tags: ["Figma", "Mobile", "Prototype"],
-    },
-    {
-      id: 3,
-      title: "Agency Website",
-      subtitle: "Business & Portfolio Platform",
-      description: "Professional platform for building business websites and portfolio showcases.",
-      image: "/web2.png",
-      link: "#",
-      preview: "#",
-      tags: ["Web", "Business", "Portfolio"],
-    }
-  ];
+  const { projects } = portfolioData;
 
   return (
     <section id="projects" className="py-24 md:py-32 border-t border-zinc-200 dark:border-zinc-800/30">

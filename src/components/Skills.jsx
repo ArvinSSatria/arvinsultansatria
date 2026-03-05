@@ -1,43 +1,8 @@
 import { motion } from 'framer-motion';
-import { FaReact, FaJs, FaPython, FaGitAlt, FaFigma, FaHtml5, FaCss3Alt, FaGithub, FaNpm, FaCode, FaLaravel } from 'react-icons/fa';
-import { SiTailwindcss, SiVite, SiFramer, SiCanva, SiMysql, SiNextdotjs, SiPostgresql } from 'react-icons/si';
+import { portfolioData } from '../data/portfolioData';
 
 const Skills = () => {
-  const categories = [
-    {
-      title: 'Frontend',
-      skills: [
-        { name: 'HTML5', icon: FaHtml5 },
-        { name: 'CSS3', icon: FaCss3Alt },
-        { name: 'JavaScript', icon: FaJs },
-        { name: 'React', icon: FaReact },
-        { name: 'Tailwind CSS', icon: SiTailwindcss },
-        { name: 'Next.js', icon: SiNextdotjs },
-      ]
-    },
-    {
-      title: 'Tools & Workflow',
-      skills: [
-        { name: 'Git', icon: FaGitAlt },
-        { name: 'GitHub', icon: FaGithub },
-        { name: 'VS Code', icon: FaCode },
-        { name: 'Vite', icon: SiVite },
-        { name: 'npm', icon: FaNpm },
-        { name: 'Framer Motion', icon: SiFramer },
-      ]
-    },
-    {
-      title: 'Design & Backend',
-      skills: [
-        { name: 'Figma', icon: FaFigma },
-        { name: 'Canva', icon: SiCanva },
-        { name: 'Laravel', icon: FaLaravel },
-        { name: 'Python', icon: FaPython },
-        { name: 'MySQL', icon: SiMysql },
-        { name: 'PostgreSQL', icon: SiPostgresql },
-      ]
-    },
-  ];
+  const { skills: categories } = portfolioData;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -83,7 +48,7 @@ const Skills = () => {
                 {category.title}
               </h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-                {category.skills.map((skill) => (
+                {category.items.map((skill) => (
                   <motion.div
                     key={skill.name}
                     variants={itemVariants}

@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaGithub, FaLinkedinIn, FaInstagram, FaPaperPlane } from 'react-icons/fa';
-import { SiThreads } from 'react-icons/si';
+import { FaEnvelope, FaPaperPlane } from 'react-icons/fa';
+import { portfolioData } from '../data/portfolioData';
 
 const Contact = () => {
+  const { personal, socials } = portfolioData;
+
   return (
     <section id="contact" className="py-24 md:py-32 border-t border-zinc-200 dark:border-zinc-800/30">
       <div className="max-w-6xl mx-auto px-6">
@@ -38,32 +40,28 @@ const Contact = () => {
                 new opportunities.
               </p>
               <a
-                href="mailto:arvinsultansatria@gmail.com"
+                href={`mailto:${personal.email}`}
                 className="inline-flex items-center gap-2 text-lg font-medium text-accent hover:text-accent-400 transition-colors"
               >
                 <FaEnvelope className="w-4 h-4" />
-                arvinsultansatria@gmail.com
+                {personal.email}
               </a>
             </div>
 
             <div>
               <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-600 uppercase tracking-wider mb-4">Socials</p>
               <div className="flex flex-wrap gap-3">
-                {[
-                  { href: "https://github.com/ArvinSSatria", icon: FaGithub, label: "GitHub" },
-                  { href: "https://www.linkedin.com/in/arvin-sultan-satria/", icon: FaLinkedinIn, label: "LinkedIn" },
-                  { href: "https://www.instagram.com/arvinssatria/", icon: FaInstagram, label: "Instagram" },
-                  { href: "https://www.threads.com/@arvinssatria", icon: SiThreads, label: "Threads" },
-                ].map((s) => (
+                {socials.map((s) => (
                   <a
-                    key={s.label}
+                    key={s.name}
                     href={s.href}
                     target="_blank"
                     rel="noreferrer"
                     className="group flex items-center gap-2.5 px-4 py-2.5 rounded-xl border border-zinc-200 dark:border-zinc-800/50 bg-zinc-50/50 dark:bg-zinc-900/30 hover:border-accent/30 dark:hover:border-accent/20 hover:bg-zinc-100 dark:hover:bg-zinc-900/60 transition-all duration-300"
+                    aria-label={`Visit ${s.name}`}
                   >
                     <s.icon className="w-4 h-4 text-zinc-400 dark:text-zinc-500 group-hover:text-accent transition-colors" />
-                    <span className="text-xs font-mono text-zinc-500 group-hover:text-zinc-800 dark:group-hover:text-zinc-300 transition-colors">{s.label}</span>
+                    <span className="text-xs font-mono text-zinc-500 group-hover:text-zinc-800 dark:group-hover:text-zinc-300 transition-colors">{s.name}</span>
                   </a>
                 ))}
               </div>
@@ -91,7 +89,7 @@ const Contact = () => {
               e.preventDefault();
               const name = e.target.name.value;
               const message = e.target.message.value;
-              const whatsappUrl = `https://wa.me/6281220774826?text=${encodeURIComponent(
+              const whatsappUrl = `https://wa.me/${personal.whatsapp}?text=${encodeURIComponent(
                 `Halo Arvin, perkenalkan saya ${name}.\n\n${message}`
               )}`;
               window.open(whatsappUrl, '_blank');

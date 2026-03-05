@@ -1,33 +1,8 @@
 import { motion } from 'framer-motion';
-import { FaGraduationCap, FaUsers, FaLaptopCode } from 'react-icons/fa';
+import { portfolioData } from '../data/portfolioData';
 
 const Experience = () => {
-  const timeline = [
-    {
-      year: '2021 — Now',
-      icon: FaGraduationCap,
-      title: 'Informatics Engineering',
-      org: 'Universitas Ahmad Dahlan',
-      desc: 'Studying informatics with focus on web development, software engineering, database systems, and UI/UX design.',
-      tags: ['Web Dev', 'Software Engineering', 'Database'],
-    },
-    {
-      year: '2023 — 2024',
-      icon: FaUsers,
-      title: 'Active Student Organization Member',
-      org: 'Campus Organization',
-      desc: 'Participated in campus tech communities, seminars, and workshops. Developed teamwork and leadership skills.',
-      tags: ['Leadership', 'Teamwork', 'Events'],
-    },
-    {
-      year: '2023 — Now',
-      icon: FaLaptopCode,
-      title: 'Freelance & Personal Projects',
-      org: 'Self-Employed',
-      desc: 'Building various web projects including landing pages, portfolio websites, and UI/UX designs for clients and personal learning.',
-      tags: ['React', 'Figma', 'Freelance'],
-    },
-  ];
+  const { experience: timeline } = portfolioData;
 
   return (
     <section id="experience" className="py-24 md:py-32 border-t border-zinc-200 dark:border-zinc-800/30">

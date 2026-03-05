@@ -107,6 +107,7 @@ const Navbar = () => {
               <button
                 onClick={() => setIsMobileOpen(false)}
                 className="p-1.5 rounded-lg text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors"
+                aria-label="Close menu"
               >
                 <FaTimes className="w-3.5 h-3.5" />
               </button>

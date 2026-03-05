@@ -1,11 +1,16 @@
 import { motion } from 'framer-motion';
+import { portfolioData } from '../data/portfolioData';
 
 const About = () => {
-  const stats = [
-    { value: '2+', label: 'Years Learning' },
-    { value: '10+', label: 'Projects Built' },
-    { value: '3+', label: 'Design Tools' },
-    { value: '∞', label: 'Curiosity' },
+  const { personal, stats, about } = portfolioData;
+
+  const aboutInfo = [
+    { label: 'Location', value: personal.location },
+    { label: 'Education', value: personal.education },
+    { label: 'Email', value: personal.email },
+    { label: 'Major', value: personal.major },
+    { label: 'Hobbies', value: personal.hobbies },
+    { label: 'GPA', value: personal.gpa },
   ];
 
   return (
@@ -26,8 +31,8 @@ const About = () => {
             <div className="md:col-span-2 space-y-6">
               <div className="aspect-[3/4] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800/50">
                 <img
-                  src="/profile.jpg"
-                  alt="Arvin Sultan Satria"
+                  src={personal.profileImage}
+                  alt={personal.name}
                   className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
                 />
               </div>
@@ -48,57 +53,45 @@ const About = () => {
             {/* Right: Text */}
             <div className="md:col-span-3 space-y-6">
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
-                Building digital things<br />
-                <span className="text-zinc-400 dark:text-zinc-500">that matter.</span>
+                {about.title}<br />
+                <span className="text-zinc-400 dark:text-zinc-500">{about.subtitle}</span>
               </h2>
 
               <div className="space-y-4 text-zinc-500 dark:text-zinc-400 leading-relaxed">
-                <p>
-                  Hey! I'm <span className="text-zinc-800 dark:text-zinc-200 font-medium">Arvin Sultan Satria</span>, an
-                  Informatics student at <span className="text-zinc-800 dark:text-zinc-200 font-medium">Universitas Ahmad Dahlan</span>.
-                  I'm passionate about building beautiful, functional websites and applications
-                  that solve real problems.
-                </p>
-                <p>
-                  My journey in tech started with curiosity about how websites work, and it has evolved
-                  into a deep interest in frontend development, UI/UX design, and creating
-                  seamless user experiences. I love the intersection of design and code.
-                </p>
-                <p>
-                  When I'm not coding, you'll find me reading, exploring photography, or
-                  experimenting with new technologies and design tools.
-                </p>
+                {about.description.map((para, i) => {
+                  // Replace names with styled spans
+                  let content = para;
+                  const name = personal.name;
+                  const university = personal.education;
+                  
+                  // Use a helper to safely replace
+                  const parts = para.split(new RegExp(`(${name}|${university})`, 'g'));
+                  
+                  return (
+                    <p key={i}>
+                      {parts.map((part, index) => {
+                        if (part === name || part === university) {
+                          return (
+                            <span key={index} className="text-zinc-800 dark:text-zinc-200 font-medium">
+                              {part}
+                            </span>
+                          );
+                        }
+                        return part;
+                      })}
+                    </p>
+                  );
+                })}
               </div>
 
               <div className="pt-4 border-t border-zinc-200 dark:border-zinc-800/50">
-                <div className="space-y-4">
-                  {/* Top row: Location & Education (2 columns on mobile) */}
-                  <div className="grid grid-cols-2 gap-4">
-                    {[
-                      { label: 'Location', value: 'Tasikmalaya, Indonesia' },
-                      { label: 'Education', value: 'Universitas Ahmad Dahlan' },
-                    ].map((info) => (
-                      <div key={info.label}>
-                        <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-600 uppercase tracking-wider">{info.label}</p>
-                        <p className="text-sm text-zinc-700 dark:text-zinc-300 mt-0.5">{info.value}</p>
-                      </div>
-                    ))}
-                  </div>
-                  
-                  {/* Bottom row: Major, Email, GPA, Hobbies (Grid) */}
-                  <div className="grid grid-cols-2 gap-y-6 gap-x-4">
-                    {[
-                      { label: 'Email', value: 'arvinsultansatria@gmail.com' },
-                      { label: 'Major', value: 'Informatics Engineering' },
-                      { label: 'Hobbies', value: 'Reading & Photography' },
-                      { label: 'GPA', value: '3.86 / 4.00' },
-                    ].map((info) => (
-                      <div key={info.label}>
-                        <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-600 uppercase tracking-wider">{info.label}</p>
-                        <p className="text-sm text-zinc-700 dark:text-zinc-300 mt-0.5 break-words">{info.value}</p>
-                      </div>
-                    ))}
-                  </div>
+                <div className="grid grid-cols-2 gap-y-6 gap-x-4">
+                  {aboutInfo.map((info) => (
+                    <div key={info.label}>
+                      <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-600 uppercase tracking-wider">{info.label}</p>
+                      <p className="text-sm text-zinc-700 dark:text-zinc-300 mt-0.5 break-words">{info.value}</p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

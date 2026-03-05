@@ -55,7 +55,7 @@ export const ThemeProvider = ({ children }) => {
           clipPath: clipPath,
         },
         {
-          duration: 400,
+          duration: 650,
           easing: 'ease-in-out',
           pseudoElement: '::view-transition-new(root)',
         }
