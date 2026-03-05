@@ -2,13 +2,16 @@ import { motion } from 'framer-motion';
 import { FaCalendarAlt, FaAward } from 'react-icons/fa';
 import { useState } from 'react';
 import { portfolioData } from '../data/portfolioData';
+import { useTheme } from '../context/ThemeContext';
 
 const Certifications = () => {
   const [activeId, setActiveId] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
   const { certificates } = portfolioData;
+  const { isTransitioning } = useTheme();
 
-  // Duplicate for desktop marquee
-  const duplicated = [...certificates, ...certificates, ...certificates];
+  // Double for desktop marquee to ensure seamless loop with -50% keyframe
+  const duplicated = [...certificates, ...certificates];
 
   return (
     <section id="certifications" className="py-24 md:py-32 border-t border-zinc-200 dark:border-zinc-800/30 overflow-hidden">
@@ -90,13 +93,18 @@ const Certifications = () => {
         </div>
       </div>
 
-      {/* Desktop View: Auto-scrolling Marquee (Bergerak Kanan ke Kiri) */}
+      {/* Desktop View: Auto-scrolling Marquee */}
       <div className="hidden md:block relative">
         {/* Fade edges */}
         <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-white dark:from-[#18181b] to-transparent pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white dark:from-[#18181b] to-transparent pointer-events-none" />
 
-        <div className="flex gap-10 animate-marquee py-4 hover:[animation-play-state:paused]">
+        <div 
+          className="flex w-max gap-10 animate-marquee py-4 pr-10 will-change-transform"
+          style={{ animationPlayState: (isTransitioning || isHovered) ? 'paused' : 'running' }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
           {duplicated.map((cert, index) => (
             <div
               key={`${cert.id}-${index}`}
@@ -116,7 +124,9 @@ const Certifications = () => {
                 </div>
 
                 {/* Back face */}
-                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/95 dark:bg-zinc-900/95 backdrop-blur-xl p-8 flex flex-col justify-between shadow-2xl">
+                <div className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/95 dark:bg-zinc-900/95 p-8 flex flex-col justify-between shadow-2xl ${
+                  isTransitioning ? '' : 'backdrop-blur-xl'
+                }`}>
                   <div>
                     <div className="p-2.5 rounded-xl bg-accent/10 w-fit mb-5">
                       <FaAward className="w-6 h-6 text-accent" />
