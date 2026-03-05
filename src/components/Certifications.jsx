@@ -44,7 +44,7 @@ const Certifications = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="aspect-[16/10] perspective-1000 cursor-pointer outline-none focus-within:ring-2 focus-within:ring-accent/50 rounded-2xl"
+              className="aspect-[16/10] perspective-1000 cursor-pointer outline-none rounded-2xl"
               onClick={() => setActiveId(activeId === cert.id ? null : cert.id)}
               role="button"
               tabIndex={0}
@@ -63,7 +63,7 @@ const Certifications = () => {
                 }`}
               >
                 {/* Front */}
-                <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800/50 bg-zinc-100 dark:bg-zinc-900/50 shadow-sm">
+                <div className="absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800/50 bg-zinc-100 dark:bg-zinc-900/50 shadow-sm">
                   <img src={cert.image} alt="" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/0 active:bg-black/10 transition-colors">
                     <span className="text-[10px] text-white/40 font-mono">Tap to flip</span>
@@ -71,7 +71,7 @@ const Certifications = () => {
                 </div>
                 {/* Back */}
                 <div 
-                  className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl border border-zinc-200 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900/95 p-6 flex flex-col justify-between shadow-xl transition-opacity duration-300 ${
+                  className={`absolute inset-0 [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl border border-zinc-200 dark:border-zinc-800/50 bg-zinc-50 dark:bg-zinc-900/95 p-6 flex flex-col justify-between shadow-xl transition-opacity duration-300 ${
                     activeId === cert.id ? 'opacity-100' : 'opacity-0'
                   }`}
                 >
