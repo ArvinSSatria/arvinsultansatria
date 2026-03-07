@@ -150,6 +150,16 @@ export const portfolioData = {
       link: "#",
       preview: "#",
       tags: ["Web", "Business", "Portfolio"],
+    },
+    {
+      id: 5,
+      title: "Engagement Checker",
+      subtitle: "Instagram & TikTok Tool",
+      description: "Website untuk pengecekan ER Instagram dan TikTok secara gratis tanpa limit scraper tanpa API.",
+      image: "/checker-website.png",
+      link: "https://engagement-checker.arvinsultansatria.my.id/",
+      preview: "https://engagement-checker.arvinsultansatria.my.id/",
+      tags: ["Web", "Tools", "Scraper"],
     }
   ],
 
