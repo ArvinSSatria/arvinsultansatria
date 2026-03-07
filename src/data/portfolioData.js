@@ -112,6 +112,16 @@ export const portfolioData = {
 
   projects: [
     {
+      id: 5,
+      title: "Engagement Checker",
+      subtitle: "Instagram & TikTok Analytics Tool",
+      description: "A free tool for checking Instagram and TikTok Engagement Rates without scraper limits or API dependencies.",
+      image: "/checker-website.png",
+      link: "https://engagement-checker.arvinsultansatria.my.id/",
+      preview: "https://engagement-checker.arvinsultansatria.my.id/",
+      tags: ["Web", "Tools", "Scraper"],
+    },
+    {
       id: 1,
       title: "Legal Care Service",
       subtitle: "Modern Legal Platform",
@@ -150,16 +160,6 @@ export const portfolioData = {
       link: "#",
       preview: "#",
       tags: ["Web", "Business", "Portfolio"],
-    },
-    {
-      id: 5,
-      title: "Engagement Checker",
-      subtitle: "Instagram & TikTok Tool",
-      description: "Website untuk pengecekan ER Instagram dan TikTok secara gratis tanpa limit scraper tanpa API.",
-      image: "/checker-website.png",
-      link: "https://engagement-checker.arvinsultansatria.my.id/",
-      preview: "https://engagement-checker.arvinsultansatria.my.id/",
-      tags: ["Web", "Tools", "Scraper"],
     }
   ],
 
