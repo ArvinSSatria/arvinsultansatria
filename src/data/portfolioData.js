@@ -177,7 +177,7 @@ export const portfolioData = {
       title: 'Sertifikat Course Bangkit Academy',
       date: '2024',
       description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_kedua.jpg',
+      image: '/certificates/sertifikat_course_1.jpg',
       tags: ['Course', 'Bangkit Academy'],
     },
     {
@@ -185,7 +185,7 @@ export const portfolioData = {
       title: 'Sertifikat Course Bangkit Academy',
       date: '2024',
       description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_ketiga.jpg',
+      image: '/certificates/sertifikat_course_2.jpg',
       tags: ['Course', 'Bangkit Academy'],
     },
     {
@@ -193,7 +193,7 @@ export const portfolioData = {
       title: 'Sertifikat Course Bangkit Academy',
       date: '2024',
       description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_keempat.jpg',
+      image: '/certificates/sertifikat_course_3.jpg',
       tags: ['Course', 'Bangkit Academy'],
     },
     {
@@ -201,7 +201,7 @@ export const portfolioData = {
       title: 'Sertifikat Course Bangkit Academy',
       date: '2024',
       description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_kelima.jpg',
+      image: '/certificates/sertifikat_course_4.jpg',
       tags: ['Course', 'Bangkit Academy'],
     },
     {
@@ -209,8 +209,40 @@ export const portfolioData = {
       title: 'Sertifikat Course Bangkit Academy',
       date: '2024',
       description: 'Successfully completed a course module in Bangkit Academy learning path.',
-      image: '/certificates/sertifikat_course_keenam.jpg',
+      image: '/certificates/sertifikat_course_5.jpg',
       tags: ['Course', 'Bangkit Academy'],
     },
+    {
+      id: 7,
+      title: 'Sertifikat Course Bangkit Academy',
+      date: '2024',
+      description: 'Successfully completed a course module in Bangkit Academy learning path.',
+      image: '/certificates/sertifikat_course_6.jpg',
+      tags: ['Course', 'Bangkit Academy'],
+    },
+    {
+      id: 8,
+      title: 'Sertifikat Course Bangkit Academy',
+      date: '2024',
+      description: 'Successfully completed a course module in Bangkit Academy learning path.',
+      image: '/certificates/sertifikat_course_7.jpg',
+      tags: ['Course', 'Bangkit Academy'],
+    },
+    {
+      id: 9,
+      title: 'Sertifikat Course Bangkit Academy',
+      date: '2024',
+      description: 'Successfully completed a course module in Bangkit Academy learning path.',
+      image: '/certificates/sertifikat_course_8.jpg',
+      tags: ['Course', 'Bangkit Academy'],
+    },
+    {
+      id: 10,
+      title: 'Sertifikat Course Bangkit Academy',
+      date: '2024',
+      description: 'Successfully completed a course module in Bangkit Academy learning path.',
+      image: '/certificates/sertifikat_course_9.jpg',
+      tags: ['Course', 'Bangkit Academy'],
+    }
   ]
 };
