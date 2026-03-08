@@ -13,7 +13,7 @@ export const portfolioData = {
     name: "Arvin Sultan Satria",
     roles: ["Frontend Developer", "UI/UX Enthusiast", "Creative Coder", "Tech Explorer"],
     email: "arvinsultansatria@gmail.com",
-    whatsapp: "6281220774826",
+    // whatsapp: "6281220774826", // sementara dihapus
     location: "Tasikmalaya, Indonesia",
     education: "Universitas Ahmad Dahlan",
     major: "Informatics Engineering",
