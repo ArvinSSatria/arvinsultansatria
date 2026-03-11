@@ -5,6 +5,7 @@ import { portfolioData } from "../data/portfolioData";
 import { useTheme } from "../context/ThemeContext";
 
 const SPEED = 0.8; // px per frame
+const DRAG_THRESHOLD = 10; // px total movement — below = tap, above = drag
 
 const Certifications = () => {
   const [flippedId, setFlippedId] = useState(null);
@@ -14,19 +15,20 @@ const Certifications = () => {
 
   const duplicated = [...certificates, ...certificates];
 
-  // ── refs ────────────────────────────────────────────────────────────────────
+  // ── refs ─────────────────────────────────────────────────────────────────────
   const wrapperRef = useRef(null);
   const trackRef = useRef(null);
   const positionRef = useRef(0);
   const rafRef = useRef(null);
   const isDraggingRef = useRef(false);
   const isHoveredRef = useRef(false);
-  const hasDraggedRef = useRef(false); // true when finger/cursor moved enough to be a drag (not a tap)
+  const hasDraggedRef = useRef(false); // true once total movement exceeds threshold
   const dragStartXRef = useRef(0);
   const dragStartYRef = useRef(0);
   const dragStartPosRef = useRef(0);
+  const touchStartTarget = useRef(null); // the DOM element the finger first touched
 
-  // ── animation loop ──────────────────────────────────────────────────────────
+  // ── animation loop ───────────────────────────────────────────────────────────
   const tick = useCallback(() => {
     const el = trackRef.current;
     if (el) {
@@ -50,13 +52,13 @@ const Certifications = () => {
     };
   }, [tick]);
 
-  // ── global mouse listeners ──────────────────────────────────────────────────
+  // ── global mouse listeners ────────────────────────────────────────────────────
   useEffect(() => {
     const onMouseMove = (e) => {
       if (!isDraggingRef.current) return;
-      const delta = e.clientX - dragStartXRef.current;
-      if (Math.abs(delta) > 5) hasDraggedRef.current = true;
-      positionRef.current = dragStartPosRef.current + delta;
+      const dx = e.clientX - dragStartXRef.current;
+      if (Math.abs(dx) > DRAG_THRESHOLD) hasDraggedRef.current = true;
+      positionRef.current = dragStartPosRef.current + dx;
     };
     const onMouseUp = () => {
       if (isDraggingRef.current) {
@@ -72,7 +74,9 @@ const Certifications = () => {
     };
   }, []);
 
-  // ── touch listeners (non-passive touchmove to block page-scroll on horizontal swipe) ──
+  // ── touch listeners ───────────────────────────────────────────────────────────
+  // All touch-flip logic lives here (native handlers) so we never depend on
+  // React's synthetic event bubbling order, which caused the "second tap broken" bug.
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
@@ -81,6 +85,7 @@ const Certifications = () => {
       const t = e.touches[0];
       isDraggingRef.current = true;
       hasDraggedRef.current = false;
+      touchStartTarget.current = e.target; // remember which element was tapped
       dragStartXRef.current = t.clientX;
       dragStartYRef.current = t.clientY;
       dragStartPosRef.current = positionRef.current;
@@ -91,10 +96,15 @@ const Certifications = () => {
       const t = e.touches[0];
       const dx = t.clientX - dragStartXRef.current;
       const dy = t.clientY - dragStartYRef.current;
-      // only take over horizontal swipes; let vertical ones scroll the page
+
+      // Use total (Euclidean) movement so that vertical scrolls also set hasDragged,
+      // preventing accidental flips after the user scrolls the page.
+      const totalMoved = Math.sqrt(dx * dx + dy * dy);
+      if (totalMoved > DRAG_THRESHOLD) hasDraggedRef.current = true;
+
+      // Only hijack horizontal swipes for the marquee; let vertical ones scroll the page.
       if (Math.abs(dx) > Math.abs(dy)) {
         e.preventDefault();
-        if (Math.abs(dx) > 5) hasDraggedRef.current = true;
         positionRef.current = dragStartPosRef.current + dx;
       }
     };
@@ -102,6 +112,20 @@ const Certifications = () => {
     const onTouchEnd = () => {
       isDraggingRef.current = false;
       setIsDragging(false);
+
+      // ── tap-to-flip ──────────────────────────────────────────────────────────
+      // Only flip when the finger barely moved (genuine tap, not a swipe).
+      if (!hasDraggedRef.current && touchStartTarget.current) {
+        // Walk up the DOM from the tapped element to find the card container.
+        const cardEl = touchStartTarget.current.closest("[data-card-key]");
+        if (cardEl) {
+          const key = cardEl.getAttribute("data-card-key");
+          // Functional update so we always read the latest flippedId.
+          setFlippedId((prev) => (prev === key ? null : key));
+        }
+      }
+
+      touchStartTarget.current = null;
     };
 
     wrapper.addEventListener("touchstart", onTouchStart, { passive: true });
@@ -114,7 +138,7 @@ const Certifications = () => {
     };
   }, []);
 
-  // ── mouse handlers ──────────────────────────────────────────────────────────
+  // ── mouse handlers ────────────────────────────────────────────────────────────
   const handleMouseDown = useCallback((e) => {
     if (e.button !== 0) return;
     isDraggingRef.current = true;
@@ -128,6 +152,7 @@ const Certifications = () => {
   const handleMouseEnter = useCallback(() => {
     isHoveredRef.current = true;
   }, []);
+
   const handleMouseLeave = useCallback(() => {
     isHoveredRef.current = false;
     if (isDraggingRef.current) {
@@ -136,13 +161,7 @@ const Certifications = () => {
     }
   }, []);
 
-  // ── per-card tap handler (touch only — fires before wrapper touchend) ───────
-  const handleCardTouchEnd = useCallback((uniqueKey) => {
-    if (!hasDraggedRef.current) {
-      setFlippedId((prev) => (prev === uniqueKey ? null : uniqueKey));
-    }
-  }, []);
-
+  // ─────────────────────────────────────────────────────────────────────────────
   return (
     <section
       id="certifications"
@@ -191,11 +210,13 @@ const Certifications = () => {
             const isFlipped = flippedId === uniqueKey;
 
             return (
+              // data-card-key lets the native touchend handler identify this card
+              // via closest("[data-card-key]") without relying on React event bubbling.
               <div
                 key={uniqueKey}
+                data-card-key={uniqueKey}
                 className="flex-shrink-0 w-[82vw] md:w-[520px] aspect-[16/10] [perspective:1200px] md:[perspective:2000px] group outline-none"
                 aria-label={`Certificate: ${cert.title}`}
-                onTouchEnd={() => handleCardTouchEnd(uniqueKey)}
               >
                 {/* Flip container */}
                 <div
