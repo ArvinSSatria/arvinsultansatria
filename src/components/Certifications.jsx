@@ -253,12 +253,12 @@ const Certifications = () => {
                         {cert.title}
                       </h3>
 
-                      <div className="flex items-center gap-2 text-xs font-mono text-accent/80 mb-3 md:mb-5 bg-accent/5 px-2.5 py-1 rounded-full w-fit">
-                        <FaCalendarAlt className="w-3 h-3 md:w-3.5 md:h-3.5" />
+                      <div className="flex items-center gap-1.5 text-[10px] md:text-xs font-mono text-accent/80 mb-2 md:mb-5 bg-accent/5 px-2 py-0.5 md:px-2.5 md:py-1 rounded-full w-fit">
+                        <FaCalendarAlt className="w-2.5 h-2.5 md:w-3.5 md:h-3.5" />
                         {cert.date}
                       </div>
 
-                      <p className="text-xs md:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3 md:line-clamp-none">
+                      <p className="text-xs md:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 md:line-clamp-none mb-4 md:mb-0">
                         {cert.description}
                       </p>
                     </div>
