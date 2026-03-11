@@ -240,7 +240,7 @@ const Certifications = () => {
 
                   {/* ── Back ── */}
                   <div
-                    className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/95 dark:bg-zinc-900/95 p-5 md:p-8 flex flex-col justify-between shadow-2xl ${
+                    className={`absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/95 dark:bg-zinc-900/95 p-4 md:p-8 flex flex-col justify-between shadow-2xl ${
                       isTransitioning ? "" : "backdrop-blur-xl"
                     }`}
                   >
@@ -258,13 +258,13 @@ const Certifications = () => {
                         {cert.date}
                       </div>
 
-                      <p className="text-xs md:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 md:line-clamp-none mb-4 md:mb-0">
+                      <p className="text-xs md:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-2 md:line-clamp-none mb-2 md:mb-0">
                         {cert.description}
                       </p>
                     </div>
 
                     <div>
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap gap-1">
                         {cert.tags.map((tag) => (
                           <span
                             key={tag}
