@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 const ThemeContext = createContext();
 
@@ -9,24 +9,30 @@ export const ThemeProvider = ({ children }) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('darkMode');
-    const dark = saved !== null ? saved === 'true' : true;
+    const saved = localStorage.getItem("darkMode");
+    const dark = saved !== null ? saved === "true" : true;
     setIsDarkMode(dark);
-    document.documentElement.classList.toggle('dark', dark);
+    document.documentElement.classList.toggle("dark", dark);
   }, []);
 
   const toggleDarkMode = (event) => {
     if (isTransitioning) return;
 
+    // Detect iOS/mobile to disable View Transition API (prevents certificate flip glitch)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isMobile = window.innerWidth < 768;
+    const shouldUseTransition = !isIOS && !isMobile;
+
     const isAppearanceTransition =
       document.startViewTransition &&
-      !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      shouldUseTransition;
 
     if (!isAppearanceTransition || !event) {
       const newMode = !isDarkMode;
       setIsDarkMode(newMode);
-      localStorage.setItem('darkMode', newMode);
-      document.documentElement.classList.toggle('dark', newMode);
+      localStorage.setItem("darkMode", newMode);
+      document.documentElement.classList.toggle("dark", newMode);
       return;
     }
 
@@ -35,14 +41,14 @@ export const ThemeProvider = ({ children }) => {
     const y = event.clientY;
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y)
+      Math.max(y, window.innerHeight - y),
     );
 
     const transition = document.startViewTransition(() => {
       const newMode = !isDarkMode;
       setIsDarkMode(newMode);
-      localStorage.setItem('darkMode', newMode);
-      document.documentElement.classList.toggle('dark', newMode);
+      localStorage.setItem("darkMode", newMode);
+      document.documentElement.classList.toggle("dark", newMode);
     });
 
     transition.ready.then(() => {
@@ -56,11 +62,11 @@ export const ThemeProvider = ({ children }) => {
         },
         {
           duration: 650,
-          easing: 'ease-in-out',
-          pseudoElement: '::view-transition-new(root)',
-        }
+          easing: "ease-in-out",
+          pseudoElement: "::view-transition-new(root)",
+        },
       );
-      
+
       animation.onfinish = () => setIsTransitioning(false);
     });
 
@@ -70,7 +76,9 @@ export const ThemeProvider = ({ children }) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ isDarkMode, toggleDarkMode, isTransitioning }}>
+    <ThemeContext.Provider
+      value={{ isDarkMode, toggleDarkMode, isTransitioning }}
+    >
       {children}
     </ThemeContext.Provider>
   );

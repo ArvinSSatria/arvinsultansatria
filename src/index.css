@@ -64,7 +64,4 @@
     z-index: 9999;
 }
 
-/* Exclude certificates flip containers from View Transitions to prevent back face glitch on iOS */
-#certifications [data-flip-container] {
-    view-transition-name: none;
-}
+/* View Transition API disabled on iOS/mobile via ThemeContext to prevent certificate flip glitch */
