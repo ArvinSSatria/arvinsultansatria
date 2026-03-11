@@ -4,8 +4,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { portfolioData } from "../data/portfolioData";
 import { useTheme } from "../context/ThemeContext";
 
-const SPEED = 0.8; // px per frame
-const DRAG_THRESHOLD = 10; // px total movement — below = tap, above = drag
+const SPEED = 0.8;
+const DRAG_THRESHOLD = 10; // px — below = tap, above = drag
 
 const Certifications = () => {
   const [flippedId, setFlippedId] = useState(null);
@@ -22,11 +22,10 @@ const Certifications = () => {
   const rafRef = useRef(null);
   const isDraggingRef = useRef(false);
   const isHoveredRef = useRef(false);
-  const hasDraggedRef = useRef(false); // true once total movement exceeds threshold
+  const hasDraggedRef = useRef(false);
   const dragStartXRef = useRef(0);
   const dragStartYRef = useRef(0);
   const dragStartPosRef = useRef(0);
-  const touchStartTarget = useRef(null); // the DOM element the finger first touched
 
   // ── animation loop ───────────────────────────────────────────────────────────
   const tick = useCallback(() => {
@@ -75,8 +74,7 @@ const Certifications = () => {
   }, []);
 
   // ── touch listeners ───────────────────────────────────────────────────────────
-  // All touch-flip logic lives here (native handlers) so we never depend on
-  // React's synthetic event bubbling order, which caused the "second tap broken" bug.
+  // Drag/scroll logic only — flip is handled by onClick on each card.
   useEffect(() => {
     const wrapper = wrapperRef.current;
     if (!wrapper) return;
@@ -85,7 +83,6 @@ const Certifications = () => {
       const t = e.touches[0];
       isDraggingRef.current = true;
       hasDraggedRef.current = false;
-      touchStartTarget.current = e.target; // remember which element was tapped
       dragStartXRef.current = t.clientX;
       dragStartYRef.current = t.clientY;
       dragStartPosRef.current = positionRef.current;
@@ -97,12 +94,12 @@ const Certifications = () => {
       const dx = t.clientX - dragStartXRef.current;
       const dy = t.clientY - dragStartYRef.current;
 
-      // Use total (Euclidean) movement so that vertical scrolls also set hasDragged,
-      // preventing accidental flips after the user scrolls the page.
+      // Total Euclidean movement — catches both horizontal and vertical drags
+      // so a page-scroll never accidentally triggers a flip.
       const totalMoved = Math.sqrt(dx * dx + dy * dy);
       if (totalMoved > DRAG_THRESHOLD) hasDraggedRef.current = true;
 
-      // Only hijack horizontal swipes for the marquee; let vertical ones scroll the page.
+      // Only take over horizontal swipes for the marquee.
       if (Math.abs(dx) > Math.abs(dy)) {
         e.preventDefault();
         positionRef.current = dragStartPosRef.current + dx;
@@ -112,20 +109,7 @@ const Certifications = () => {
     const onTouchEnd = () => {
       isDraggingRef.current = false;
       setIsDragging(false);
-
-      // ── tap-to-flip ──────────────────────────────────────────────────────────
-      // Only flip when the finger barely moved (genuine tap, not a swipe).
-      if (!hasDraggedRef.current && touchStartTarget.current) {
-        // Walk up the DOM from the tapped element to find the card container.
-        const cardEl = touchStartTarget.current.closest("[data-card-key]");
-        if (cardEl) {
-          const key = cardEl.getAttribute("data-card-key");
-          // Functional update so we always read the latest flippedId.
-          setFlippedId((prev) => (prev === key ? null : key));
-        }
-      }
-
-      touchStartTarget.current = null;
+      // Flip is handled by the onClick on each card — nothing to do here.
     };
 
     wrapper.addEventListener("touchstart", onTouchStart, { passive: true });
@@ -161,7 +145,15 @@ const Certifications = () => {
     }
   }, []);
 
-  // ─────────────────────────────────────────────────────────────────────────────
+  // ── per-card click handler ────────────────────────────────────────────────────
+  // onClick fires on mobile after touchend (no 300 ms delay on modern browsers
+  // with a proper viewport meta tag). The browser does NOT fire click after a
+  // real drag, so hasDraggedRef is a safety net for edge-cases only.
+  const handleCardClick = useCallback((uniqueKey) => {
+    if (hasDraggedRef.current) return; // was a drag, not a tap
+    setFlippedId((prev) => (prev === uniqueKey ? null : uniqueKey));
+  }, []);
+
   return (
     <section
       id="certifications"
@@ -210,13 +202,13 @@ const Certifications = () => {
             const isFlipped = flippedId === uniqueKey;
 
             return (
-              // data-card-key lets the native touchend handler identify this card
-              // via closest("[data-card-key]") without relying on React event bubbling.
               <div
                 key={uniqueKey}
-                data-card-key={uniqueKey}
                 className="flex-shrink-0 w-[82vw] md:w-[520px] aspect-[16/10] [perspective:1200px] md:[perspective:2000px] group outline-none"
                 aria-label={`Certificate: ${cert.title}`}
+                // onClick handles tap-to-flip on mobile AND click-to-flip on desktop.
+                // hasDraggedRef prevents flip when the user was actually dragging.
+                onClick={() => handleCardClick(uniqueKey)}
               >
                 {/* Flip container */}
                 <div
@@ -224,19 +216,19 @@ const Certifications = () => {
                     isFlipped
                       ? "[transform:rotateY(180deg)]"
                       : !isDragging
-                        ? "group-hover:[transform:rotateY(180deg)]"
+                        ? "md:group-hover:[transform:rotateY(180deg)]"
                         : ""
                   }`}
                 >
                   {/* ── Front ── */}
-                  <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800/40 bg-zinc-100 dark:bg-zinc-900/50 shadow-lg group-hover:shadow-2xl transition-all duration-500">
+                  <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800/40 bg-zinc-100 dark:bg-zinc-900/50 shadow-lg md:group-hover:shadow-2xl transition-all duration-500">
                     <img
                       src={cert.image}
                       alt={cert.title}
                       draggable={false}
-                      className="w-full h-full object-cover object-center scale-100 group-hover:scale-105 transition-transform duration-700 pointer-events-none"
+                      className="w-full h-full object-cover object-center scale-100 md:group-hover:scale-105 transition-transform duration-700 pointer-events-none"
                     />
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors" />
+                    <div className="absolute inset-0 bg-black/0 md:group-hover:bg-black/5 transition-colors" />
                     {/* Tap hint — mobile only */}
                     <div className="absolute bottom-3 right-3 md:hidden">
                       <span className="text-[9px] text-white/50 font-mono bg-black/25 px-2 py-0.5 rounded-full">
