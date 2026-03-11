@@ -212,6 +212,7 @@ const Certifications = () => {
               >
                 {/* Flip container */}
                 <div
+                  data-flip-container
                   className={`relative w-full h-full [transform-style:preserve-3d] transition-transform duration-700 ${
                     isFlipped
                       ? "[transform:rotateY(180deg)]"
