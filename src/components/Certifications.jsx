@@ -21,7 +21,6 @@ const Certifications = () => {
   const positionRef = useRef(0);
   const rafRef = useRef(null);
   const isDraggingRef = useRef(false);
-  const isHoveredRef = useRef(false);
   const hasDraggedRef = useRef(false);
   const dragStartXRef = useRef(0);
   const dragStartYRef = useRef(0);
@@ -32,7 +31,8 @@ const Certifications = () => {
     const el = trackRef.current;
     if (el) {
       const halfWidth = el.scrollWidth / 2;
-      if (!isHoveredRef.current && !isDraggingRef.current && halfWidth > 0) {
+      // Stop moving if a card is flipped
+      if (!flippedId && !isDraggingRef.current && halfWidth > 0) {
         positionRef.current -= SPEED;
       }
       if (halfWidth > 0) {
@@ -42,7 +42,7 @@ const Certifications = () => {
       el.style.transform = `translateX(${positionRef.current}px)`;
     }
     rafRef.current = requestAnimationFrame(tick);
-  }, []);
+  }, [flippedId]);
 
   useEffect(() => {
     rafRef.current = requestAnimationFrame(tick);
@@ -133,12 +133,7 @@ const Certifications = () => {
     e.preventDefault();
   }, []);
 
-  const handleMouseEnter = useCallback(() => {
-    isHoveredRef.current = true;
-  }, []);
-
   const handleMouseLeave = useCallback(() => {
-    isHoveredRef.current = false;
     if (isDraggingRef.current) {
       isDraggingRef.current = false;
       setIsDragging(false);
@@ -183,7 +178,6 @@ const Certifications = () => {
       <div
         ref={wrapperRef}
         className="relative select-none"
-        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         onMouseDown={handleMouseDown}
         style={{ cursor: isDragging ? "grabbing" : "grab" }}
@@ -214,11 +208,7 @@ const Certifications = () => {
                 <div
                   data-flip-container
                   className={`relative w-full h-full [transform-style:preserve-3d] transition-transform duration-700 ${
-                    isFlipped
-                      ? "[transform:rotateY(180deg)]"
-                      : !isDragging
-                        ? "md:group-hover:[transform:rotateY(180deg)]"
-                        : ""
+                    isFlipped ? "[transform:rotateY(180deg)]" : ""
                   }`}
                 >
                   {/* ── Front ── */}

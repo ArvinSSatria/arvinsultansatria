@@ -1,7 +1,7 @@
 import { 
   FaReact, FaJs, FaPython, FaGitAlt, FaFigma, FaHtml5, FaCss3Alt, 
   FaGithub, FaLinkedinIn, FaInstagram, FaCode, FaLaravel,
-  FaGraduationCap, FaUsers, FaLaptopCode, FaNpm
+  FaGraduationCap, FaUsers, FaLaptopCode, FaNpm, FaTiktok
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, SiVite, SiFramer, SiCanva, SiMysql, 
@@ -13,7 +13,6 @@ export const portfolioData = {
     name: "Arvin Sultan Satria",
     roles: ["Frontend Developer", "UI/UX Enthusiast", "Creative Coder", "Tech Explorer"],
     email: "arvinsultansatria@gmail.com",
-    // whatsapp: "6281220774826", // sementara dihapus
     location: "Tasikmalaya, Indonesia",
     education: "Universitas Ahmad Dahlan",
     major: "Informatics Engineering",
@@ -27,12 +26,13 @@ export const portfolioData = {
     { name: "GitHub", href: "https://github.com/ArvinSSatria", icon: FaGithub },
     { name: "LinkedIn", href: "https://www.linkedin.com/in/arvin-sultan-satria/", icon: FaLinkedinIn },
     { name: "Instagram", href: "https://www.instagram.com/arvinssatria/", icon: FaInstagram },
+    { name: "TikTok", href: "https://www.tiktok.com/@arvinssatria", icon: FaTiktok },
     { name: "Threads", href: "https://www.threads.com/@arvinssatria", icon: SiThreads },
   ],
 
   stats: [
-    { value: '2+', label: 'Years Learning' },
-    { value: '10+', label: 'Projects Built' },
+    { value: '4+', label: 'Years Learning' },
+    { value: '16+', label: 'Projects Built' },
     { value: '3+', label: 'Design Tools' },
     { value: '∞', label: 'Curiosity' },
   ],
@@ -157,8 +157,6 @@ export const portfolioData = {
       subtitle: "Business & Portfolio Platform",
       description: "Professional platform for building business websites and portfolio showcases.",
       image: "/agency-website.png",
-      link: "#",
-      preview: "#",
       tags: ["Web", "Business", "Portfolio"],
     }
   ],
@@ -244,5 +242,71 @@ export const portfolioData = {
       image: '/certificates/sertifikat_course_9.jpg',
       tags: ['Course', 'Bangkit Academy'],
     }
-  ]
+  ],
+
+  photography: [
+    {
+      id: 1,
+      url: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
+      caption: "Mountain Serenity",
+      location: "Yosemite, USA",
+      span: "md:col-span-2 md:row-span-2",
+    },
+    {
+      id: 2,
+      url: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop",
+      caption: "Alps Peak",
+      location: "Switzerland",
+      span: "md:col-span-1 md:row-span-1",
+    },
+    {
+      id: 3,
+      url: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop",
+      caption: "Golden Lake",
+      location: "New Zealand",
+      span: "md:col-span-1 md:row-span-2",
+    },
+    {
+      id: 4,
+      url: "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=2070&auto=format&fit=crop",
+      caption: "Coastal Breeze",
+      location: "Norway",
+      span: "md:col-span-1 md:row-span-1",
+    }
+  ],
+  music: {
+    title: "Multo",
+    artist: "Cup of Joe",
+    cover: "/multo.webp",
+    audioUrl: "/multo.mp3",
+    lyrics: [
+      { startTime: 0, original: "Tanging panalangin, lubayan na sana", translation: "Satu-satunya doaku, semoga kamu segera pergi" },
+      { startTime: 8, original: "Dahil sa bawat tingin, mukha mo'y nakikita", translation: "Karena setiap kali melihat, wajahmu yang muncul" },
+      { startTime: 18, original: "Kahit sa'n man mapunta ay anino mo'y kumakapit sa 'king kamay", translation: "Ke mana pun aku pergi, bayanganmu menggenggam tanganku" },
+      { startTime: 27, original: "Ako ay dahan-dahang nililibing nang buhay pa", translation: "Aku perlahan dikubur hidup-hidup" },
+      { startTime: 36, original: "Hindi na makalaya", translation: "Tidak bisa bebas lagi" },
+      { startTime: 40.5, original: "Dinadalaw mo 'ko bawat gabi", translation: "Kamu mendatangiku setiap malam" },
+      { startTime: 45, original: "Wala mang nakikita", translation: "Meski tidak ada wujudnya" },
+      { startTime: 50, original: "Haplos mo'y ramdam pa rin sa dilim", translation: "Sentuhanmu masih terasa dalam gelap" },
+      { startTime: 55, original: "Hindi na nananaginip", translation: "Ini bukan lagi mimpi" },
+      { startTime: 59, original: "Hindi na ma-makagising", translation: "Tapi tidak bisa bangun" },
+      { startTime: 63.5, original: "Pasindi na ng ilaw", translation: "Tolong nyalakan lampunya" },
+      { startTime: 68, original: "Minumulto na 'ko ng damdamin ko", translation: "Aku dihantui oleh perasaanku sendiri" },
+      { startTime: 71.5, original: "ng damdamin ko", translation: "perasaanku sendiri" },
+      { startTime: 74, original: "Hindi mo ba ako lilisanin?", translation: "Tidakkah kamu akan meninggalkanku?" },
+      { startTime: 78, original: "Hindi pa ba sapat pagpapahirap sa 'kin?", translation: "Belum cukupkah penderitaan ini bagiku?" },
+      { startTime: 83, original: "Hindi na ba ma-mamamayapa?", translation: "Tidakkah akan pernah merasa damai?" },
+      { startTime: 88, original: "Hindi na ba ma-mamamayapa?", translation: "Tidakkah akan pernah merasa tenang?" },
+      { startTime: 92, original: "Hindi na ma-makalaya", translation: "Tidak bisa bebas lagi" },
+      { startTime: 96, original: "Dina-dalaw mo 'ko bawat gabi", translation: "Kamu mendatangiku setiap malam" },
+      { startTime: 101, original: "Wala mang nakikita", translation: "Meski tidak ada wujudnya" },
+      { startTime: 105, original: "Haplos mo'y ramdam pa rin sa dilim", translation: "Sentuhanmu masih terasa dalam gelap" },
+      { startTime: 109, original: "Hindi na nananaginip", translation: "Ini bukan lagi mimpi" },
+      { startTime: 114, original: "Hindi na ma-makagising", translation: "Tapi tidak bisa bangun" },
+      { startTime: 119, original: "Pasindi na ng ilaw", translation: "Tolong nyalakan lampunya" },
+      { startTime: 125, original: "Minumulto na 'ko ng damdamin ko", translation: "Aku dihantui oleh perasaanku sendiri" },
+      { startTime: 126, original: "ng damdamin ko", translation: "perasaanku sendiri" },
+      { startTime: 128, original: ".....", translation: "....." },
+    ]
+  }
 };
