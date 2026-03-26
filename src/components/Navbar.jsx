@@ -14,14 +14,11 @@ const navLinks = [
 const Navbar = () => {
   const { isDarkMode, toggleDarkMode } = useTheme();
   const { pathname } = useLocation();
-  const [activeSection, setActiveSection] = useState('/');
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   useEffect(() => {
-    setActiveSection(pathname);
-
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
@@ -34,19 +31,19 @@ const Navbar = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, pathname]);
+  }, [lastScrollY]);
 
   const renderNavLink = (link, isMobile = false) => {
-    const isActive = activeSection === link.href;
+    const isActive = pathname === link.href;
     const baseClass = isMobile 
       ? `px-3 py-2.5 text-center text-xs font-mono rounded-xl transition-all ${
           isActive
-            ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold'
+            ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold shadow-md'
             : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white'
         }`
       : `relative px-4 py-2 text-[13px] font-mono font-medium rounded-full transition-all duration-300 ${
           isActive
-            ? 'text-white bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900'
+            ? 'text-white bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 shadow-sm'
             : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
         }`;
 
