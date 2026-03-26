@@ -51,9 +51,14 @@ const Navbar = () => {
       <Link
         key={link.href}
         to={link.href}
-        onClick={() => isMobile && setIsMobileOpen(false)}
+        onClick={(e) => {
+          if (isMobile) {
+            e.currentTarget.blur();
+            setIsMobileOpen(false);
+          }
+        }}
         className={baseClass}
-        style={{ WebkitTapHighlightColor: 'transparent' }}
+        style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
       >
         {link.label}
       </Link>
