@@ -23,12 +23,6 @@ const PhotographyPage = () => {
       </div>
       
       <Photography preview={false} />
-      
-      <div className="max-w-6xl mx-auto px-6 py-12 border-t border-zinc-200 dark:border-zinc-800/30 text-center">
-         <p className="text-zinc-400 dark:text-zinc-600 font-mono text-[10px] uppercase tracking-[0.2em]">
-            // thank you for scrolling
-         </p>
-      </div>
     </div>
   );
 };

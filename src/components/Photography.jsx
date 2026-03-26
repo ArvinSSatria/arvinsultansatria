@@ -1,11 +1,32 @@
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { portfolioData } from "../data/portfolioData";
-import { FaMapMarkerAlt, FaArrowRight } from "react-icons/fa";
+import { FaMapMarkerAlt, FaArrowRight, FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Photography = ({ preview = false }) => {
   const { photography } = portfolioData;
   const displayPhotos = preview ? photography.slice(0, 4) : photography;
+  const [selectedPhoto, setSelectedPhoto] = useState(null);
+
+  // Close lightbox on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') setSelectedPhoto(null);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Prevent scrolling when lightbox is open
+  useEffect(() => {
+    if (selectedPhoto) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+    return () => { document.body.style.overflow = 'auto'; };
+  }, [selectedPhoto]);
 
   return (
     <section
@@ -61,7 +82,8 @@ const Photography = ({ preview = false }) => {
                 duration: 0.6,
                 delay: index * 0.08
               }}
-              className={`relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-100 dark:bg-zinc-900/50 ${photo.span}`}
+              onClick={() => setSelectedPhoto(photo)}
+              className={`relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-100 dark:bg-zinc-900/50 cursor-pointer ${photo.span}`}
             >
 
               {/* Image */}
@@ -84,7 +106,6 @@ const Photography = ({ preview = false }) => {
                 </div>
 
               </div>
-
             </motion.div>
           ))}
         </div>
@@ -97,6 +118,59 @@ const Photography = ({ preview = false }) => {
             </div>
         )}
       </div>
+
+      {/* Lightbox / Full screen image view */}
+      <AnimatePresence>
+        {selectedPhoto && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setSelectedPhoto(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8 backdrop-blur-sm"
+          >
+            {/* Close button */}
+            <button
+              className="absolute top-6 right-6 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
+              onClick={(e) => {
+                e.stopPropagation();
+                setSelectedPhoto(null);
+              }}
+            >
+              <FaTimes className="w-5 h-5" />
+            </button>
+
+            {/* Image container */}
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 30 }}
+              className="relative max-w-[95vw] max-h-[90vh] md:max-w-[85vw] md:max-h-[85vh] rounded-xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <img
+                src={selectedPhoto.url}
+                alt={selectedPhoto.caption}
+                className="w-full h-full object-contain max-h-[90vh] md:max-h-[85vh] rounded-xl"
+              />
+              
+              {/* Caption overlay in lightbox */}
+              <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black/80 to-transparent pointer-events-none">
+                <p className="text-white text-xl font-bold mb-2">
+                  {selectedPhoto.caption}
+                </p>
+                <div className="flex items-center gap-2 text-white/80 text-sm font-mono">
+                  <FaMapMarkerAlt className="w-4 h-4 text-accent" />
+                  {selectedPhoto.location}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </section>
   );
 };

@@ -1,5 +1,7 @@
 import Contact from '../components/Contact';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { IoArrowBack } from 'react-icons/io5';
 
 const ContactPage = () => {
   useEffect(() => {
@@ -7,7 +9,16 @@ const ContactPage = () => {
   }, []);
 
   return (
-    <div className="pt-20 min-h-[80vh] flex flex-col justify-center">
+    <div className="pt-20 min-h-screen">
+      <div className="max-w-6xl mx-auto px-6 mb-8">
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 text-zinc-500 hover:text-accent transition-colors font-mono text-xs uppercase tracking-widest group"
+        >
+          <IoArrowBack className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+          Back to Home
+        </Link>
+      </div>
       <Contact />
     </div>
   );

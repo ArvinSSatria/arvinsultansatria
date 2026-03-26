@@ -272,6 +272,34 @@ export const portfolioData = {
       caption: "Gunung Papandayan",
       location: "Garut",
       span: "md:col-span-1 md:row-span-1",
+    },
+    {
+      id: 5,
+      url: "/img5.jpeg",
+      caption: "Kapo-Kapo Vilagge",
+      location: "Padang",
+      span: "md:col-span-2 md:row-span-1",
+    },
+    {
+      id: 6,
+      url: "/img2.jpeg",
+      caption: "Laut Mandeh",
+      location: "Padang",
+      span: "md:col-span-2 md:row-span-2",
+    },
+    {
+      id: 7,
+      url: "/img3.jpeg",
+      caption: "Mandeh Resort",
+      location: "Padang",
+      span: "md:col-span-1 md:row-span-1",
+    },
+    {
+      id: 8,
+      url: "/img6.jpeg",
+      caption: "Laut Mandeh",
+      location: "Padang",
+      span: "md:col-span-1 md:row-span-1",
     }
   ],
   music: {
