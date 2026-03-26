@@ -36,12 +36,12 @@ const Navbar = () => {
   const renderNavLink = (link, isMobile = false) => {
     const isActive = pathname === link.href;
     const baseClass = isMobile 
-      ? `px-3 py-2.5 text-center text-xs font-mono rounded-xl transition-all ${
+      ? `px-3 py-2.5 text-center text-xs font-mono rounded-xl transition-all focus:outline-none focus-visible:outline-none ${
           isActive
             ? 'bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold shadow-md'
-            : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white'
+            : 'text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:text-zinc-900 dark:hover:text-white focus:bg-transparent active:bg-zinc-100 dark:active:bg-zinc-800'
         }`
-      : `relative px-4 py-2 text-[13px] font-mono font-medium rounded-full transition-all duration-300 ${
+      : `relative px-4 py-2 text-[13px] font-mono font-medium rounded-full transition-all duration-300 focus:outline-none ${
           isActive
             ? 'text-white bg-zinc-900 dark:bg-zinc-100 dark:text-zinc-900 shadow-sm'
             : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100'
@@ -53,6 +53,7 @@ const Navbar = () => {
         to={link.href}
         onClick={() => isMobile && setIsMobileOpen(false)}
         className={baseClass}
+        style={{ WebkitTapHighlightColor: 'transparent' }}
       >
         {link.label}
       </Link>

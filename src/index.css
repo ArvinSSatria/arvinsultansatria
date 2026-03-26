@@ -7,6 +7,10 @@
         @apply font-sans antialiased;
     }
 
+    a, button {
+        -webkit-tap-highlight-color: transparent;
+    }
+
     ::selection {
         @apply bg-accent/30 text-white;
     }
