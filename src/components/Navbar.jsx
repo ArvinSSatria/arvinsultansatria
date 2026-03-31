@@ -84,25 +84,21 @@ const Navbar = () => {
 
       {/* ── Mobile: Floating centered pill (Bottom) ── */}
       <nav
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center justify-between p-2 px-2.5 rounded-full border border-zinc-200/50 dark:border-zinc-800/40 bg-white/50 dark:bg-zinc-800/50 backdrop-blur-md shadow-xl shadow-black/5 dark:shadow-black/20 w-[90vw] max-w-[360px]"
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center justify-between p-2 px-3 rounded-full border border-zinc-200/50 dark:border-zinc-800/40 bg-white/50 dark:bg-zinc-800/50 backdrop-blur-md shadow-xl shadow-black/5 dark:shadow-black/20 w-[85vw] max-w-[320px]"
       >
-        <div className="flex items-center justify-between flex-1 pr-1.5">
-          {navLinks.map((link) => renderNavLink(link, true))}
-        </div>
-
-        {/* Divider */}
-        <div className="w-[1px] h-7 bg-zinc-200 dark:bg-zinc-700/60 mx-1 shrink-0 rounded-full"></div>
-
-        {/* Dark mode toggle */}
-        <button
-          onClick={toggleDarkMode}
-          style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
-          className="w-10 h-10 flex items-center justify-center rounded-full text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300 shrink-0 ml-0.5 focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none active:ring-0 select-none"
-          aria-label="Toggle Dark Mode"
-        >
-          {isDarkMode ? <FaSun className="w-[18px] h-[18px]" /> : <FaMoon className="w-[18px] h-[18px]" />}
-        </button>
+        {navLinks.map((link) => renderNavLink(link, true))}
       </nav>
+
+      {/* ── Mobile: Floating Dark Mode Toggle (Top Right) ── */}
+      <button
+        onClick={toggleDarkMode}
+        style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
+        className="fixed top-5 right-5 z-50 flex md:hidden items-center justify-center w-11 h-11 rounded-full border border-zinc-200/50 dark:border-zinc-800/40 bg-white/50 dark:bg-zinc-800/50 backdrop-blur-md shadow-xl shadow-black/5 dark:shadow-black/20 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50 transition-all duration-300 focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none active:ring-0 select-none"
+        aria-label="Toggle Dark Mode"
+      >
+        {isDarkMode ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
+      </button>
+
     </>
   );
 };
