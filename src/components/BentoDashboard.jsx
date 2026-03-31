@@ -310,6 +310,46 @@ const BentoDashboard = () => {
             </div>
           </motion.div>
 
+          {/* Profile Card - New Profile Card styled like other main cards */}
+          <motion.div 
+            variants={itemVariants}
+            whileHover={{ y: -5 }}
+            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-all duration-500 group overflow-hidden flex flex-col"
+          >
+            {/* Label at the top */}
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
+                // about me
+              </span>
+            </div>
+
+            {/* Profile Image Header */}
+            <Link to="/profile" className="block aspect-video rounded-xl overflow-hidden relative group/img mb-6 shrink-0 border border-zinc-200 dark:border-zinc-800/30">
+               <img src={personal.profileImage} alt="Profile" className="w-full h-full object-cover transition-all duration-700 group-hover/img:scale-105" />
+            </Link>
+
+            <div className="flex-1 flex flex-col">
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
+                  {personal.name}
+                </h4>
+                <Link to="/profile" className="text-zinc-400 hover:text-accent transition-colors mt-2">
+                  <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
+                </Link>
+              </div>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed mb-6">
+                {portfolioData.about.description[0]}
+              </p>
+              
+              <div className="mt-auto">
+                 <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
+                    <FaMapMarkerAlt className="w-2.5 h-2.5 text-accent/50" />
+                    {personal.location}
+                 </p>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Featured Project Card - Styled like main Projects section */}
           <motion.div 
             variants={itemVariants}
@@ -324,13 +364,13 @@ const BentoDashboard = () => {
             </div>
 
             {/* Project Image Header */}
-            <div className="aspect-video rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-800/30 bg-zinc-100 dark:bg-zinc-800/20 mb-6 shrink-0 relative">
+            <Link to="/projects" className="block aspect-video rounded-xl overflow-hidden relative group/img mb-6 shrink-0 border border-zinc-200 dark:border-zinc-800/30 bg-zinc-100 dark:bg-zinc-800/20">
               <img 
                 src={portfolioData.projects[0].image} 
                 alt="Featured" 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                className="w-full h-full object-cover transition-all duration-700 group-hover/img:scale-105" 
               />
-            </div>
+            </Link>
 
             <div className="flex-1 flex flex-col">
               <div className="flex justify-between items-start mb-2">
@@ -338,7 +378,7 @@ const BentoDashboard = () => {
                   {portfolioData.projects[0].title}
                 </h4>
                 <Link to="/projects" className="text-zinc-400 hover:text-accent transition-colors mt-2">
-                  <FaCode className="w-4 h-4" />
+                  <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
                 </Link>
               </div>
               <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 mb-6 leading-relaxed">
@@ -353,52 +393,6 @@ const BentoDashboard = () => {
                     </span>
                   ))}
                 </div>
-                <a 
-                  href={portfolioData.projects[0].preview} 
-                  target="_blank" 
-                  className="text-xs font-bold text-zinc-900 dark:text-white flex items-center gap-1.5 group/link"
-                >
-                  Live Preview <FaExternalLinkAlt className="w-2.5 h-2.5 group-hover/link:translate-x-0.5 transition-transform" />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Photo Quick Link (Captured Moment) - Balanced with Project Card */}
-          <motion.div 
-            variants={itemVariants}
-            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-all duration-500 group overflow-hidden flex flex-col"
-          >
-            {/* Label at the top */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
-                // captured moment
-              </span>
-            </div>
-
-            {/* Photography Header Image */}
-            <Link to="/photography" className="block aspect-video rounded-xl overflow-hidden relative group/img mb-6 shrink-0 border border-zinc-200 dark:border-zinc-800/30">
-               <img src={photography[0].url} alt="Latest" className="w-full h-full object-cover transition-all duration-700 group-hover/img:scale-105" />
-            </Link>
-
-            <div className="flex-1 flex flex-col">
-              <div className="flex justify-between items-start mb-2">
-                <h4 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
-                  {photography[0].caption}
-                </h4>
-                <Link to="/photography" className="text-zinc-400 hover:text-accent transition-colors mt-2">
-                  <FaCamera className="w-4 h-4" />
-                </Link>
-              </div>
-              <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed mb-6">
-                Exploring the beauty of {photography[0].location} through my lens.
-              </p>
-              
-              <div className="mt-auto">
-                 <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
-                    <FaMapMarkerAlt className="w-2.5 h-2.5 text-accent/50" />
-                    {photography[0].location}
-                 </p>
               </div>
             </div>
           </motion.div>

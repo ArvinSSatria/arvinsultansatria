@@ -1,7 +1,7 @@
 import { 
   FaReact, FaJs, FaPython, FaGitAlt, FaFigma, FaHtml5, FaCss3Alt, 
   FaGithub, FaLinkedinIn, FaInstagram, FaCode, FaLaravel,
-  FaGraduationCap, FaUsers, FaLaptopCode, FaNpm, FaTiktok
+  FaGraduationCap, FaUsers, FaLaptopCode, FaNpm, FaTiktok, FaAndroid
 } from 'react-icons/fa';
 import { 
   SiTailwindcss, SiVite, SiFramer, SiCanva, SiMysql, 
@@ -108,6 +108,14 @@ export const portfolioData = {
       desc: 'Building various web projects including landing pages, portfolio websites, and UI/UX designs for clients and personal learning.',
       tags: ['React', 'Figma', 'Freelance'],
     },
+    {
+      year: 'Sep 2024 — Jan 2025',
+      icon: FaAndroid,
+      title: 'Android Development Cohort',
+      org: 'Bangkit Academy 2024 (MSIB Batch 7)',
+      desc: 'Graduated from an intensive certified independent study program hosted by Dicoding Indonesia. Honed skills in modern mobile application development and Android ecosystems.',
+      tags: ['Android', 'Mobile', 'MSIB'],
+    },
   ],
 
   projects: [
@@ -120,6 +128,16 @@ export const portfolioData = {
       link: "https://engagement-checker.arvinsultansatria.my.id/",
       preview: "https://engagement-checker.arvinsultansatria.my.id/",
       tags: ["Web", "Tools", "Scraper"],
+    },
+    {
+      id: 6,
+      title: "Gemura Website",
+      subtitle: "Irema Masjid Rahmatullah",
+      description: "A community website built for Irema (Ikatan Remaja Masjid) Masjid Rahmatullah to showcase their activities, events, and organizational information.",
+      image: "/gemura-website.png",
+      link: "#",
+      preview: "#",
+      tags: ["Web", "Community", "Organization"],
     },
     {
       id: 1,

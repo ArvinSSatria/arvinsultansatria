@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaArrowDown } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { portfolioData } from '../data/portfolioData';
 
 const Hero = () => {
@@ -94,12 +95,12 @@ const Hero = () => {
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           >
-            <a
-              href="#projects"
+            <Link
+              to="/projects"
               className="group px-7 py-3.5 rounded-full bg-zinc-800 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold text-sm hover:bg-zinc-900 dark:hover:bg-zinc-200 transition-all duration-300 hover:shadow-lg hover:shadow-black/10"
             >
               View My Work
-            </a>
+            </Link>
             <a
               href={personal.cvPath}
               target="_blank"
