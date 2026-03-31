@@ -42,7 +42,7 @@ const Navbar = () => {
       ? 'w-10 h-10 shrink-0' // Decreased pill size slightly to match smaller icon
       : 'px-4 py-2 text-[13px]';
       
-    const content = isMobile ? <link.icon className="w-[18px] h-[18px]" /> : link.label;
+    const content = isMobile ? <link.icon className="w-[18px] h-[18px] pointer-events-none" /> : link.label;
 
     return (
       <Link
@@ -55,6 +55,7 @@ const Navbar = () => {
         }`}
         style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
         aria-label={link.label}
+        title={link.label}
       >
         {content}
       </Link>
@@ -76,9 +77,10 @@ const Navbar = () => {
           onClick={toggleDarkMode}
           className="ml-1 p-2 rounded-full text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-all duration-300 focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none active:ring-0 select-none"
           aria-label="Toggle Dark Mode"
+          title="Toggle Dark Mode"
           style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
         >
-          {isDarkMode ? <FaSun className="w-3.5 h-3.5" /> : <FaMoon className="w-3.5 h-3.5" />}
+          {isDarkMode ? <FaSun className="w-3.5 h-3.5 pointer-events-none" /> : <FaMoon className="w-3.5 h-3.5 pointer-events-none" />}
         </button>
       </nav>
 
@@ -95,8 +97,9 @@ const Navbar = () => {
         style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
         className="fixed top-5 right-5 z-50 flex md:hidden items-center justify-center w-11 h-11 rounded-full border border-zinc-200/50 dark:border-zinc-800/40 bg-white/50 dark:bg-zinc-800/50 backdrop-blur-md shadow-xl shadow-black/5 dark:shadow-black/20 text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50 transition-all duration-300 focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none active:ring-0 select-none"
         aria-label="Toggle Dark Mode"
+        title="Toggle Dark Mode"
       >
-        {isDarkMode ? <FaSun className="w-5 h-5" /> : <FaMoon className="w-5 h-5" />}
+        {isDarkMode ? <FaSun className="w-5 h-5 pointer-events-none" /> : <FaMoon className="w-5 h-5 pointer-events-none" />}
       </button>
 
     </>
