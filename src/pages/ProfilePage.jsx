@@ -25,8 +25,8 @@ const ProfilePage = () => {
       <div className="border-b border-zinc-200 dark:border-zinc-800/30 mb-0" />
       <About />
       <Certifications />
-      <Skills />
       <Experience />
+      <Skills />
     </div>
   );
 };
