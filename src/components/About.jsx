@@ -16,15 +16,32 @@ const About = () => {
   return (
     <section id="about" className="py-24 md:py-32 relative">
       <div className="max-w-6xl mx-auto px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
+          className="mb-12 md:mb-16"
         >
           <span className="font-mono text-xs text-accent tracking-widest uppercase mb-4 block">
             // about me
           </span>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+            Get to Know Me
+          </h2>
+          <p className="text-zinc-500 max-w-lg">
+            A brief introduction about who I am, my background, and what drives my passion for technology and design.
+          </p>
+        </motion.div>
+
+        {/* Content */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
 
           <div className="grid md:grid-cols-5 gap-12 lg:gap-16">
             {/* Left: Image + Stats */}
