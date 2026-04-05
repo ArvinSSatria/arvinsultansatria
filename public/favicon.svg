@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Background -->
+  <rect width="256" height="256" rx="56" fill="#050505" />
+  <rect width="248" height="248" x="4" y="4" rx="52" fill="none" stroke="#222222" stroke-width="4" />
+  
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Code Brackets >< -->
+    <path d="M 68 100 L 40 128 L 68 156" stroke="#444444" stroke-width="12" />
+    <path d="M 188 100 L 216 128 L 188 156" stroke="#444444" stroke-width="12" />
+
+    <!-- Pixel-Perfect Centered Letter A -->
+    <path d="M 84 184 L 128 72 L 172 184" stroke="#ffffff" stroke-width="26" />
+    <path d="M 99 150 L 157 150" stroke="#ffffff" stroke-width="22" />
+  </g>
+</svg>

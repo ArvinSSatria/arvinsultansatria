@@ -11,7 +11,7 @@ import {
 export const portfolioData = {
   personal: {
     name: "Arvin Sultan Satria",
-    roles: ["Frontend Developer", "UI/UX Enthusiast", "Creative Coder", "Tech Explorer"],
+    roles: ["Fullstack Web Developer", "UI/UX Enthusiast", "Creative Coder", "Tech Explorer"],
     email: "arvinsultansatria@gmail.com",
     location: "Tasikmalaya, Indonesia",
     education: "Universitas Ahmad Dahlan",
@@ -42,7 +42,7 @@ export const portfolioData = {
     subtitle: "that matter.",
     description: [
       "Hey! I'm Arvin Sultan Satria, an Informatics student at Universitas Ahmad Dahlan. I'm passionate about building beautiful, functional websites and applications that solve real problems.",
-      "My journey in tech started with curiosity about how websites work, and it has evolved into a deep interest in frontend development, UI/UX design, and creating seamless user experiences. I love the intersection of design and code.",
+      "My journey in tech started with curiosity about how websites work, and it has evolved into a deep interest in fullstack web development, UI/UX design, and creating seamless user experiences. I love the intersection of design and code.",
       "When I'm not coding, you'll find me reading, exploring photography, or experimenting with new technologies and design tools."
     ]
   },
