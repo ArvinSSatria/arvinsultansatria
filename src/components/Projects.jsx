@@ -109,19 +109,10 @@ const Projects = () => {
                         rel="noreferrer"
                         className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors group/link"
                       >
-                        View Design
+                        View Project
                         <FaArrowRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
                       </a>
-                      {project.preview !== '#' && (
-                        <a
-                          href={project.preview}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="inline-flex items-center gap-2 text-sm text-zinc-400 dark:text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
-                        >
-                          Live Preview <FaExternalLinkAlt className="w-2.5 h-2.5" />
-                        </a>
-                      )}
+
                     </div>
                   </div>
                 </motion.div>
