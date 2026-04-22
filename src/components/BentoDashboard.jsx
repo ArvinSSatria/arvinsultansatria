@@ -396,6 +396,110 @@ const BentoDashboard = () => {
               </div>
             </div>
           </motion.div>
+
+          {/* Gallery Card */}
+          <motion.div 
+            variants={itemVariants}
+            whileHover={{ y: -5 }}
+            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-all duration-500 group overflow-hidden flex flex-col"
+          >
+            {/* Label at the top */}
+            <div className="flex items-center gap-2 mb-4">
+              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
+                // gallery
+              </span>
+            </div>
+
+            {/* Gallery Image */}
+            <Link to="/photography" className="block aspect-video rounded-xl overflow-hidden relative group/img mb-6 shrink-0 border border-zinc-200 dark:border-zinc-800/30 bg-zinc-100 dark:bg-zinc-800/20">
+              <img 
+                src="/img4.jpeg" 
+                alt="Pantai Pandansari" 
+                className="w-full h-full object-cover transition-all duration-700 group-hover/img:scale-105" 
+              />
+            </Link>
+
+            <div className="flex-1 flex flex-col">
+              <div className="flex justify-between items-start mb-2">
+                <h4 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
+                  Photography
+                </h4>
+                <Link to="/photography" className="text-zinc-400 hover:text-accent transition-colors mt-2">
+                  <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
+                </Link>
+              </div>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 mb-6 leading-relaxed">
+                Capturing moments and discovering beautiful places through my lens.
+              </p>
+              
+              <div className="mt-auto flex items-center justify-between">
+                <p className="text-[11px] font-mono text-zinc-400 dark:text-zinc-500 flex items-center gap-2">
+                    <FaCamera className="w-2.5 h-2.5 text-accent/50" />
+                    Pantai Pandansari, Yogyakarta
+                 </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contact Card */}
+          <motion.div 
+            variants={itemVariants}
+            whileHover={{ y: -5 }}
+            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-all duration-500 group overflow-hidden flex flex-col justify-between relative"
+          >
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
+                 style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+                 
+            {/* Label at the top */}
+            <div className="flex items-center gap-2 mb-4 relative z-10">
+              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
+                // let's talk
+              </span>
+            </div>
+
+            <div className="flex-1 flex flex-col justify-center relative z-10 my-4">
+              <h4 className="text-3xl md:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-4 leading-[1.1]">
+                Have a project <br />in mind?
+              </h4>
+              <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8 max-w-[90%]">
+                I'm always open to discussing product design work or partnership opportunities.
+              </p>
+              
+              <a 
+                href={`https://mail.google.com/mail/?view=cm&fs=1&to=${personal.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 font-medium text-sm hover:scale-105 active:scale-95 transition-all w-fit"
+              >
+                Send an Email
+                <FaExternalLinkAlt className="w-3 h-3" />
+              </a>
+            </div>
+            
+            <div className="relative z-10 mt-auto pt-6 border-t border-zinc-200/50 dark:border-zinc-800/50 flex justify-between items-center">
+              <div className="flex items-center gap-4">
+                {portfolioData.socials.slice(0, 3).map((social, idx) => {
+                  const Icon = social.icon;
+                  return (
+                    <a 
+                      key={idx}
+                      href={social.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800/50 flex items-center justify-center text-zinc-600 dark:text-zinc-400 hover:text-accent hover:bg-accent/10 transition-colors"
+                      aria-label={social.name}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </a>
+                  );
+                })}
+              </div>
+              <Link to="/contact" className="text-zinc-400 hover:text-accent transition-colors">
+                  <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
+              </Link>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
