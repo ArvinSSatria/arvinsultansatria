@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { ReactLenis } from 'lenis/react';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ProfilePage from './pages/ProfilePage';
@@ -33,10 +34,18 @@ function AppContent() {
 }
 
 function App() {
+  const lenisOptions = {
+    lerp: 0.1,
+    duration: 1.5,
+    smoothWheel: true,
+  };
+
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <ReactLenis root options={lenisOptions}>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </ReactLenis>
   );
 }
 
