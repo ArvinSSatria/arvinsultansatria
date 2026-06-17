@@ -1,4 +1,3 @@
-import { FaHeart } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolioData';
 
 const Footer = () => {
@@ -8,10 +7,8 @@ const Footer = () => {
     <footer className="border-t border-zinc-200 dark:border-zinc-800/30">
       <div className="max-w-6xl mx-auto px-6 py-8">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs font-mono text-zinc-400 dark:text-zinc-600 flex items-center gap-1.5">
-            Built with <FaHeart className="w-3 h-3 text-accent" /> by {personal.name}
-            <span className="text-zinc-300 dark:text-zinc-800 mx-1">•</span>
-            © {new Date().getFullYear()}
+          <p className="text-xs font-mono text-zinc-400 dark:text-zinc-600">
+            &copy; {new Date().getFullYear()} {personal.name}. All rights reserved.
           </p>
 
           <div className="flex items-center gap-4">

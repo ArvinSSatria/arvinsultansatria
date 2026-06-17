@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaArrowRight, FaExternalLinkAlt, FaPlus, FaMinus } from 'react-icons/fa';
+import { FaArrowRight, FaExternalLinkAlt, FaPlus, FaMinus, FaTimes } from 'react-icons/fa';
 import { portfolioData } from '../data/portfolioData';
 
 const INITIAL_COUNT = 4;
@@ -8,6 +8,20 @@ const INITIAL_COUNT = 4;
 const Projects = () => {
   const { projects } = portfolioData;
   const [showAll, setShowAll] = useState(false);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isZoomed, setIsZoomed] = useState(false);
+
+  // Prevent background scrolling when modal is open
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedProject]);
 
   const displayedProjects = showAll ? projects : projects.slice(0, INITIAL_COUNT);
 
@@ -38,8 +52,8 @@ const Projects = () => {
         </motion.div>
 
         {/* Projects list */}
-        <motion.div layout className="space-y-8">
-          <AnimatePresence mode="popLayout">
+        <div className="space-y-8">
+          <AnimatePresence>
             {displayedProjects.map((project, index) => {
               const isExtra = index >= INITIAL_COUNT;
               // Stagger: kartu lama pakai delay bertingkat saat scroll,
@@ -50,20 +64,19 @@ const Projects = () => {
                 <motion.div
                   key={project.id}
                   data-project-index={index}
-                  layout
-                  className="group relative grid md:grid-cols-2 gap-6 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-all duration-500"
-                  initial={isExtra ? { opacity: 1, y: 0 } : { opacity: 0, y: 48 }}
+                  className="group relative grid md:grid-cols-2 gap-6 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform"
+                  initial={isExtra ? { opacity: 0, y: 20 } : { opacity: 0, y: 48 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   exit={{
                     opacity: 0,
-                    transition: { duration: 0 },
+                    y: 20,
+                    transition: { duration: 0.2 },
                   }}
-                  viewport={{ once: true, amount: 0.08 }}
+                  viewport={{ once: true, margin: "-50px" }}
                   transition={{
                     duration: 0.65,
                     delay: entryDelay,
                     ease: [0.215, 0.61, 0.355, 1],
-                    layout: { duration: 0.42, ease: [0.215, 0.61, 0.355, 1] },
                   }}
                 >
                   {/* Project image */}
@@ -103,6 +116,14 @@ const Projects = () => {
                     </div>
 
                     <div className="flex items-center gap-5">
+                      <button
+                        onClick={() => setSelectedProject(project)}
+                        className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors group/link"
+                      >
+                        View Detail
+                        <FaArrowRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
+                      </button>
+
                       <a
                         href={project.link}
                         target="_blank"
@@ -110,16 +131,15 @@ const Projects = () => {
                         className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors group/link"
                       >
                         View Project
-                        <FaArrowRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
+                        <FaExternalLinkAlt className="w-3 h-3 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform" />
                       </a>
-
                     </div>
                   </div>
                 </motion.div>
               );
             })}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Toggle button */}
         {projects.length > INITIAL_COUNT && (
@@ -168,6 +188,60 @@ const Projects = () => {
           </motion.div>
         )}
       </div>
+
+      {/* Full Screenshot Modal */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 md:p-12 bg-zinc-900/80 backdrop-blur-sm"
+            onClick={() => { setSelectedProject(null); setIsZoomed(false); }}
+          >
+            <motion.div
+              initial={{ y: 50, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 20, opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl h-[90vh] bg-zinc-100 dark:bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800/60 shadow-2xl flex flex-col"
+            >
+              {/* Header / Close button */}
+              <div className="absolute top-4 right-4 md:top-6 md:right-8 z-10 flex gap-2">
+                <button
+                  onClick={() => { setSelectedProject(null); setIsZoomed(false); }}
+                  className="w-10 h-10 flex items-center justify-center rounded-full bg-white dark:bg-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 shadow-[0_4px_12px_rgba(0,0,0,0.1)] hover:shadow-[0_6px_16px_rgba(0,0,0,0.15)] transition-all border border-zinc-200/50 dark:border-zinc-700/50"
+                >
+                  <FaTimes className="w-4 h-4" />
+                </button>
+              </div>
+
+              {/* Scrollable Image Container */}
+              <div 
+                className={`w-full h-full overflow-y-auto p-0 overscroll-contain ${isZoomed ? 'overflow-x-auto' : 'overflow-x-hidden'}`}
+                data-lenis-prevent="true"
+              >
+                {selectedProject.fullScreenshot ? (
+                  <img
+                    src={selectedProject.fullScreenshot}
+                    alt={`Full Screenshot - ${selectedProject.title}`}
+                    onClick={() => setIsZoomed(!isZoomed)}
+                    className={`${isZoomed ? "w-auto max-w-none cursor-zoom-out" : "w-full h-auto cursor-zoom-in"} block transition-all duration-300 origin-top`}
+                  />
+                ) : (
+                  <div className="w-full h-full min-h-[50vh] flex flex-col items-center justify-center rounded-xl shadow-sm border border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-zinc-900">
+                    <div className="text-center p-8">
+                      <p className="text-zinc-500 dark:text-zinc-400 font-medium text-lg">Full screenshot is not available yet.</p>
+                      <p className="text-sm text-zinc-400 dark:text-zinc-500 mt-2">Please add it to the portfolio data.</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

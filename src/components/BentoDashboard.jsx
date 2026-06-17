@@ -118,13 +118,23 @@ const BentoDashboard = () => {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.1 }
+      transition: { 
+        staggerChildren: 0.1,
+        delayChildren: 0.1
+      }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    hidden: { opacity: 0, y: 40 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { 
+        duration: 0.7, 
+        ease: [0.215, 0.61, 0.355, 1] 
+      }
+    }
   };
 
   return (
@@ -136,7 +146,7 @@ const BentoDashboard = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           className="grid grid-cols-2 lg:grid-cols-4 gap-4"
         >
           {/* Main Stat Card - Bento Hub */}
@@ -314,7 +324,7 @@ const BentoDashboard = () => {
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5 }}
-            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-all duration-500 group overflow-hidden flex flex-col"
+            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform group overflow-hidden flex flex-col"
           >
             {/* Label at the top */}
             <div className="flex items-center gap-2 mb-4">
@@ -354,7 +364,7 @@ const BentoDashboard = () => {
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5 }}
-            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-all duration-500 group overflow-hidden flex flex-col"
+            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform group overflow-hidden flex flex-col"
           >
             {/* Label at the top */}
             <div className="flex items-center gap-2 mb-4">
@@ -401,7 +411,7 @@ const BentoDashboard = () => {
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5 }}
-            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-all duration-500 group overflow-hidden flex flex-col"
+            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform group overflow-hidden flex flex-col"
           >
             {/* Label at the top */}
             <div className="flex items-center gap-2 mb-4">
@@ -445,7 +455,7 @@ const BentoDashboard = () => {
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5 }}
-            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-all duration-500 group overflow-hidden flex flex-col justify-between relative"
+            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform group overflow-hidden flex flex-col justify-between relative"
           >
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
