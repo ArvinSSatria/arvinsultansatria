@@ -205,7 +205,7 @@ const Projects = () => {
               exit={{ y: 20, opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl h-[90vh] bg-zinc-100 dark:bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800/60 shadow-2xl flex flex-col"
+              className="relative w-full max-w-5xl h-auto max-h-[90vh] bg-zinc-100 dark:bg-zinc-950 rounded-2xl overflow-hidden border border-zinc-200 dark:border-zinc-800/60 shadow-2xl flex flex-col"
             >
               {/* Header / Close button */}
               <div className="absolute top-4 right-4 md:top-6 md:right-8 z-10 flex gap-2">
@@ -219,7 +219,7 @@ const Projects = () => {
 
               {/* Scrollable Image Container */}
               <div 
-                className={`w-full h-full overflow-y-auto p-0 overscroll-contain ${isZoomed ? 'overflow-x-auto' : 'overflow-x-hidden'}`}
+                className={`w-full flex-1 min-h-0 overflow-y-auto p-0 overscroll-contain ${isZoomed ? 'overflow-x-auto' : 'overflow-x-hidden'}`}
                 data-lenis-prevent="true"
               >
                 {selectedProject.fullScreenshot ? (
