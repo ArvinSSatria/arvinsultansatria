@@ -227,7 +227,7 @@ const Projects = () => {
                     src={selectedProject.fullScreenshot}
                     alt={`Full Screenshot - ${selectedProject.title}`}
                     onClick={() => setIsZoomed(!isZoomed)}
-                    className={`${isZoomed ? "w-auto max-w-none cursor-zoom-out" : "w-full h-auto cursor-zoom-in"} block transition-all duration-300 origin-top`}
+                    className={`${isZoomed ? "w-[200%] md:w-[150%] max-w-none cursor-zoom-out" : "w-full h-auto cursor-zoom-in"} block transition-all duration-300 origin-top`}
                   />
                 ) : (
                   <div className="w-full h-full min-h-[50vh] flex flex-col items-center justify-center rounded-xl shadow-sm border border-zinc-200/50 dark:border-zinc-800/50 bg-white dark:bg-zinc-900">
