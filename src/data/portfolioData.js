@@ -11,12 +11,12 @@ import {
 export const portfolioData = {
   personal: {
     name: "Arvin Sultan Satria",
-    roles: ["Fullstack Web Developer", "UI/UX Enthusiast", "Creative Coder", "Tech Explorer"],
+    roles: ["Full-Stack Web Developer", "Informatics Graduate", "Web Development & AI Integration"],
     email: "arvinsultansatria@gmail.com",
     location: "Tasikmalaya, Indonesia",
     education: "Universitas Ahmad Dahlan",
     major: "Informatics Engineering",
-    gpa: "3.87 / 4.00",
+    gpa: "3.88 / 4.00",
     hobbies: "Reading & Photography",
     cvPath: "/cv-arvin.pdf",
     profileImage: "/profile.webp",
@@ -38,12 +38,13 @@ export const portfolioData = {
   ],
 
   about: {
-    title: "Building digital things",
-    subtitle: "that matter.",
+    title: "Turning ideas into",
+    subtitle: "practical digital solutions.",
     description: [
-      "Hey! I'm Arvin Sultan Satria, an Informatics student at Universitas Ahmad Dahlan. I'm passionate about building beautiful, functional websites and applications that solve real problems.",
-      "My journey in tech started with curiosity about how websites work, and it has evolved into a deep interest in fullstack web development, UI/UX design, and creating seamless user experiences. I love the intersection of design and code.",
-      "When I'm not coding, you'll find me reading, exploring photography, or experimenting with new technologies and design tools."
+      "I am an Informatics graduate from Universitas Ahmad Dahlan with hands-on experience in web development, software engineering, and digital projects, complemented by experience in business development.",
+      "My technical background includes building responsive websites and web applications with JavaScript, TypeScript, React.js, Next.js, Python, Flask, and Laravel. Across professional and academic projects, I have gained practical experience in front-end and back-end development, REST API integration, database management, testing, and deployment. I enjoy turning ideas and requirements into functional, user-friendly digital solutions.",
+      "Beyond technical development, I am expanding my experience in business development, client communication, and project coordination. This combination helps me understand both the technical and business perspectives of a project and connect user needs with practical solutions.",
+      "I continue to improve my skills in software development, web technologies, and digital innovation, with a strong interest in building impactful digital products that solve real-world problems and create business value."
     ]
   },
 
@@ -85,12 +86,12 @@ export const portfolioData = {
 
   experience: [
     {
-      year: '2022 — Now',
+      year: 'Graduate',
       icon: FaGraduationCap,
-      title: 'Informatics Engineering',
+      title: 'Informatics Engineering Graduate',
       org: 'Universitas Ahmad Dahlan',
-      desc: 'Studying informatics with focus on web development, software engineering, database systems, and UI/UX design.',
-      tags: ['Web Dev', 'Software Engineering', 'Database'],
+      desc: 'Graduated with a 3.88 GPA. Focused on web development, software engineering, and digital projects.',
+      tags: ['Web Development', 'Software Engineering', 'Digital Projects'],
     },
     {
       year: '2023 — 2024',

@@ -31,7 +31,7 @@ const About = () => {
             Get to Know Me
           </h2>
           <p className="text-zinc-500 max-w-lg">
-            A brief introduction about who I am, my background, and what drives my passion for technology and design.
+            Informatics graduate with experience across software development and business projects.
           </p>
         </motion.div>
 

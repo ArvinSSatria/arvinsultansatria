@@ -86,8 +86,8 @@ const Hero = () => {
             variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
             className="text-base md:text-lg text-zinc-500 max-w-xl mx-auto leading-relaxed mb-10"
           >
-            Informatics student at UAD. I design and build modern web experiences
-            with attention to detail, clean code, and smooth interactions.
+            Informatics graduate from Universitas Ahmad Dahlan with hands-on
+            experience in web development, software engineering, and digital projects.
           </motion.p>
 
           {/* CTA + Socials */}
