@@ -55,6 +55,17 @@ const StatCounter = ({ value, label }) => {
   );
 };
 
+const WindowDots = () => (
+  <div
+    aria-hidden="true"
+    className="absolute inset-x-0 top-0 z-20 flex h-9 items-center gap-[5px] border-b border-zinc-200/70 bg-[#f9f9fa] px-[14px] dark:border-zinc-700/60 dark:bg-zinc-800/90"
+  >
+    <span className="h-3 w-3 rounded-full bg-[#f92630]" />
+    <span className="h-3 w-3 rounded-full bg-[#eea700]" />
+    <span className="h-3 w-3 rounded-full bg-[#00c147]" />
+  </div>
+);
+
 const BentoDashboard = () => {
   const { personal, stats, photography, music } = portfolioData;
   const [isPlaying, setIsPlaying] = useState(false);
@@ -324,14 +335,9 @@ const BentoDashboard = () => {
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5 }}
-            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform group overflow-hidden flex flex-col"
+            className="relative col-span-2 row-span-2 flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50/30 p-6 pt-14 transition-colors duration-500 group hover:border-zinc-300 hover:bg-zinc-100/50 dark:border-zinc-800/40 dark:bg-zinc-900/20 dark:hover:border-zinc-700/60 dark:hover:bg-zinc-900/40 will-change-transform"
           >
-            {/* Label at the top */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
-                // about me
-              </span>
-            </div>
+            <WindowDots />
 
             {/* Profile Image Header */}
             <Link to="/profile" className="block aspect-video rounded-xl overflow-hidden relative group/img mb-6 shrink-0 border border-zinc-200 dark:border-zinc-800/30">
@@ -339,13 +345,18 @@ const BentoDashboard = () => {
             </Link>
 
             <div className="flex-1 flex flex-col">
-              <div className="flex justify-between items-start mb-2">
-                <h4 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="min-w-0 truncate text-[15px] sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
                   {personal.name}
                 </h4>
-                <Link to="/profile" className="text-zinc-400 hover:text-accent transition-colors mt-2">
-                  <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
-                </Link>
+                <div className="flex shrink-0 items-center gap-1.5">
+                  <span className="font-sans text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
+                    About Me
+                  </span>
+                  <Link to="/profile" className="text-zinc-400 hover:text-accent transition-colors" aria-label="Open profile">
+                    <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
+                  </Link>
+                </div>
               </div>
               <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 leading-relaxed mb-6">
                 {portfolioData.about.description[0]}
@@ -364,16 +375,11 @@ const BentoDashboard = () => {
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5 }}
-            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform group overflow-hidden flex flex-col"
+            className="relative col-span-2 row-span-2 flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50/30 p-6 pt-14 transition-colors duration-500 group hover:border-zinc-300 hover:bg-zinc-100/50 dark:border-zinc-800/40 dark:bg-zinc-900/20 dark:hover:border-zinc-700/60 dark:hover:bg-zinc-900/40 will-change-transform"
           >
-            {/* Label at the top */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
-                // featured project
-              </span>
-            </div>
+            <WindowDots />
 
-            {/* Project Image Header */}
+            {/* Project image */}
             <Link to="/projects" className="block aspect-video rounded-xl overflow-hidden relative group/img mb-6 shrink-0 border border-zinc-200 dark:border-zinc-800/30 bg-zinc-100 dark:bg-zinc-800/20">
               <img 
                 src={portfolioData.projects[0].image} 
@@ -383,13 +389,18 @@ const BentoDashboard = () => {
             </Link>
 
             <div className="flex-1 flex flex-col">
-              <div className="flex justify-between items-start mb-2">
-                <h4 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="min-w-0 truncate text-lg sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
                   {portfolioData.projects[0].title}
                 </h4>
-                <Link to="/projects" className="text-zinc-400 hover:text-accent transition-colors mt-2">
-                  <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
-                </Link>
+                <div className="flex shrink-0 items-center gap-1.5">
+                  <span className="font-sans text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
+                    Featured Project
+                  </span>
+                  <Link to="/projects" className="text-zinc-400 hover:text-accent transition-colors" aria-label="Open projects">
+                    <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
+                  </Link>
+                </div>
               </div>
               <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 mb-6 leading-relaxed">
                 {portfolioData.projects[0].description}
@@ -411,14 +422,9 @@ const BentoDashboard = () => {
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5 }}
-            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform group overflow-hidden flex flex-col"
+            className="relative col-span-2 row-span-2 flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50/30 p-6 pt-14 transition-colors duration-500 group hover:border-zinc-300 hover:bg-zinc-100/50 dark:border-zinc-800/40 dark:bg-zinc-900/20 dark:hover:border-zinc-700/60 dark:hover:bg-zinc-900/40 will-change-transform"
           >
-            {/* Label at the top */}
-            <div className="flex items-center gap-2 mb-4">
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
-                // gallery
-              </span>
-            </div>
+            <WindowDots />
 
             {/* Gallery Image */}
             <Link to="/photography" className="block aspect-video rounded-xl overflow-hidden relative group/img mb-6 shrink-0 border border-zinc-200 dark:border-zinc-800/30 bg-zinc-100 dark:bg-zinc-800/20">
@@ -430,13 +436,18 @@ const BentoDashboard = () => {
             </Link>
 
             <div className="flex-1 flex flex-col">
-              <div className="flex justify-between items-start mb-2">
-                <h4 className="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
+              <div className="flex items-center justify-between mb-2">
+                <h4 className="min-w-0 truncate text-lg sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
                   Photography
                 </h4>
-                <Link to="/photography" className="text-zinc-400 hover:text-accent transition-colors mt-2">
-                  <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
-                </Link>
+                <div className="flex shrink-0 items-center gap-1.5">
+                  <span className="font-sans text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
+                    Gallery
+                  </span>
+                  <Link to="/photography" className="text-zinc-400 hover:text-accent transition-colors" aria-label="Open gallery">
+                    <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
+                  </Link>
+                </div>
               </div>
               <p className="text-sm text-zinc-500 dark:text-zinc-400 line-clamp-2 mb-6 leading-relaxed">
                 Capturing moments and discovering beautiful places through my lens.
@@ -455,23 +466,27 @@ const BentoDashboard = () => {
           <motion.div 
             variants={itemVariants}
             whileHover={{ y: -5 }}
-            className="col-span-2 row-span-2 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform group overflow-hidden flex flex-col justify-between relative"
+            className="relative col-span-2 row-span-2 flex flex-col justify-between overflow-hidden rounded-2xl border border-zinc-200 bg-zinc-50/30 p-6 pt-14 transition-colors duration-500 group hover:border-zinc-300 hover:bg-zinc-100/50 dark:border-zinc-800/40 dark:bg-zinc-900/20 dark:hover:border-zinc-700/60 dark:hover:bg-zinc-900/40 will-change-transform"
           >
+            <WindowDots />
             {/* Background Pattern */}
             <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none" 
                  style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
                  
-            {/* Label at the top */}
-            <div className="flex items-center gap-2 mb-4 relative z-10">
-              <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
-                // let's talk
-              </span>
-            </div>
-
             <div className="flex-1 flex flex-col justify-center relative z-10 my-4">
-              <h4 className="text-3xl md:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 mb-4 leading-[1.1]">
-                Have a project <br />in mind?
-              </h4>
+              <div className="flex items-start justify-between gap-3 mb-4">
+                <h4 className="min-w-0 text-xl sm:text-2xl lg:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 leading-[1.1]">
+                  Have a project in mind?
+                </h4>
+                <div className="flex shrink-0 items-center gap-1.5 pt-1">
+                  <span className="font-sans text-[9px] sm:text-[10px] uppercase tracking-[0.16em] sm:tracking-[0.2em] text-zinc-400 dark:text-zinc-500">
+                    Let’s Talk
+                  </span>
+                  <Link to="/contact" className="text-zinc-400 hover:text-accent transition-colors" aria-label="Open contact page">
+                    <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
+                  </Link>
+                </div>
+              </div>
               <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-8 max-w-[90%]">
                 I'm always open to discussing product design work or partnership opportunities.
               </p>
@@ -487,7 +502,7 @@ const BentoDashboard = () => {
               </a>
             </div>
             
-            <div className="relative z-10 mt-auto pt-6 border-t border-zinc-200/50 dark:border-zinc-800/50 flex justify-between items-center">
+            <div className="relative z-10 mt-auto pt-6 border-t border-zinc-200/50 dark:border-zinc-800/50 flex justify-start items-center">
               <div className="flex items-center gap-4">
                 {portfolioData.socials.slice(0, 3).map((social, idx) => {
                   const Icon = social.icon;
@@ -505,9 +520,6 @@ const BentoDashboard = () => {
                   );
                 })}
               </div>
-              <Link to="/contact" className="text-zinc-400 hover:text-accent transition-colors">
-                  <span className="w-4 h-4 flex items-center justify-center font-bold">→</span>
-              </Link>
             </div>
           </motion.div>
         </motion.div>

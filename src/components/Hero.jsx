@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { FaArrowDown } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { portfolioData } from '../data/portfolioData';
@@ -51,15 +50,6 @@ const Hero = () => {
             visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
           }}
         >
-          {/* Status badge */}
-          <motion.div
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 mb-8"
-          >
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs font-mono text-zinc-500 dark:text-zinc-400">Available for opportunities</span>
-          </motion.div>
-
           {/* Main heading */}
           <motion.h1
             variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
@@ -133,22 +123,6 @@ const Hero = () => {
           </motion.div>
         </motion.div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-        >
-          <a
-            href="#about"
-            className="flex flex-col items-center gap-2 text-zinc-400 dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 transition-colors"
-            aria-label="Scroll to about section"
-          >
-            <span className="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
-            <FaArrowDown className="w-3 h-3 animate-bounce" />
-          </a>
-        </motion.div>
       </div>
     </section>
   );

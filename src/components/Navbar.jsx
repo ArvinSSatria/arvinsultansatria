@@ -8,11 +8,11 @@ import { useTheme } from '../context/ThemeContext';
 import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
-  { href: '/', label: 'home', icon: IoHome },
-  { href: '/profile', label: 'profile', icon: FaUser },
-  { href: '/projects', label: 'works', icon: FaBriefcase },
-  { href: '/photography', label: 'gallery', icon: FaCamera },
-  { href: '/contact', label: 'contact', icon: FaEnvelope },
+  { href: '/', label: 'Home', icon: IoHome },
+  { href: '/profile', label: 'Profile', icon: FaUser },
+  { href: '/projects', label: 'Works', icon: FaBriefcase },
+  { href: '/photography', label: 'Gallery', icon: FaCamera },
+  { href: '/contact', label: 'Contact', icon: FaEnvelope },
 ];
 
 const Navbar = () => {
@@ -48,16 +48,16 @@ const Navbar = () => {
       <Link
         key={link.href}
         to={link.href}
-        className={`relative flex items-center justify-center ${paddingClass} font-mono font-medium rounded-full transition-all duration-300 focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none active:ring-0 select-none whitespace-nowrap ${
+        className={`relative flex items-center justify-center ${paddingClass} font-sans font-medium rounded-full transition-all duration-300 focus:outline-none focus-visible:outline-none focus:ring-0 active:outline-none active:ring-0 select-none whitespace-nowrap ${
           isActive
-            ? 'text-white bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 shadow-sm'
+            ? 'nav-glass-active text-white dark:text-zinc-900'
             : 'text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-100'
         }`}
         style={{ WebkitTapHighlightColor: 'transparent', outline: 'none' }}
         aria-label={link.label}
         title={link.label}
       >
-        {content}
+        <span className="relative z-10">{content}</span>
       </Link>
     );
   };
@@ -86,7 +86,7 @@ const Navbar = () => {
 
       {/* ── Mobile: Floating centered pill (Bottom) ── */}
       <nav
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center justify-between p-2 px-3 rounded-full border border-zinc-200/50 dark:border-zinc-800/40 bg-white/50 dark:bg-zinc-800/50 backdrop-blur-md shadow-xl shadow-black/5 dark:shadow-black/20 w-[85vw] max-w-[320px]"
+        className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center justify-between p-2 px-3 rounded-full border border-zinc-200/50 dark:border-zinc-800/40 bg-white/50 dark:bg-zinc-800/50 backdrop-blur-md shadow-xl shadow-black/5 dark:shadow-black/20 w-[85vw] max-w-[320px]"
       >
         {navLinks.map((link) => renderNavLink(link, true))}
       </nav>

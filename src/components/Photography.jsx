@@ -90,7 +90,7 @@ const Photography = ({ preview = false }) => {
               <img
                 src={photo.url}
                 alt={photo.caption}
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[1200ms] ease-out group-hover:scale-110"
+                className="w-full h-full object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-110"
               />
 
               {/* Overlay */}
