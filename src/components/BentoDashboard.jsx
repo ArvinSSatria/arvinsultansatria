@@ -423,7 +423,7 @@ const BentoDashboard = () => {
             {/* Gallery Image */}
             <Link to="/photography" className="block aspect-video rounded-xl overflow-hidden relative group/img mb-6 shrink-0 border border-zinc-200 dark:border-zinc-800/30 bg-zinc-100 dark:bg-zinc-800/20">
               <img 
-                src="/img4.jpeg" 
+                src="/img4.webp" 
                 alt="Pantai Pandansari" 
                 className="w-full h-full object-cover transition-all duration-700 group-hover/img:scale-105" 
               />
