@@ -346,7 +346,7 @@ const BentoDashboard = () => {
 
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="min-w-0 truncate text-[15px] sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
+                <h4 className="min-w-0 text-[15px] sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.2]">
                   {personal.name}
                 </h4>
                 <div className="flex shrink-0 items-center gap-1.5">
@@ -390,7 +390,7 @@ const BentoDashboard = () => {
 
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="min-w-0 truncate text-lg sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
+                <h4 className="min-w-0 text-lg sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.2]">
                   {portfolioData.projects[0].title}
                 </h4>
                 <div className="flex shrink-0 items-center gap-1.5">
@@ -437,7 +437,7 @@ const BentoDashboard = () => {
 
             <div className="flex-1 flex flex-col">
               <div className="flex items-center justify-between mb-2">
-                <h4 className="min-w-0 truncate text-lg sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.1]">
+                <h4 className="min-w-0 text-lg sm:text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 group-hover:text-accent transition-colors leading-[1.2]">
                   Photography
                 </h4>
                 <div className="flex shrink-0 items-center gap-1.5">
