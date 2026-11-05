@@ -124,15 +124,17 @@ const Projects = () => {
                         <FaArrowRight className="w-3 h-3 group-hover/link:translate-x-1 transition-transform" />
                       </button>
 
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors group/link"
-                      >
-                        View Project
-                        <FaExternalLinkAlt className="w-3 h-3 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform" />
-                      </a>
+                      {project.link && project.link !== '#' && (
+                        <a
+                          href={project.link}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:text-accent transition-colors group/link"
+                        >
+                          View Project
+                          <FaExternalLinkAlt className="w-3 h-3 group-hover/link:-translate-y-0.5 group-hover/link:translate-x-0.5 transition-transform" />
+                        </a>
+                      )}
                     </div>
                   </div>
                 </motion.div>

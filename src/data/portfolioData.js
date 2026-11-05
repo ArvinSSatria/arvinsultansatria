@@ -143,6 +143,15 @@ export const portfolioData = {
       tags: ["React", "JavaScript", "PHP", "Laravel", "Tailwind CSS", "Vite"],
     },
     {
+      id: 7,
+      title: "Buzznesia Website",
+      subtitle: "Digital Content Agency Website",
+      description: "A website for Buzznesia that presents its content creator services, campaign portfolio, and data-driven digital marketing approach.",
+      image: "/buzznesia-website.png",
+      fullScreenshot: "/screenshots/buzznesia.png",
+      tags: ["Web Development", "UI/UX Design", "Digital Marketing"],
+    },
+    {
       id: 1,
       title: "Legal Care Service",
       subtitle: "Frontend Web Application",
