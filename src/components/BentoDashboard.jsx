@@ -126,24 +126,26 @@ const BentoDashboard = () => {
   };
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0, filter: "blur(8px)" },
     visible: {
       opacity: 1,
+      filter: "blur(0px)",
       transition: { 
-        staggerChildren: 0.1,
-        delayChildren: 0.1
+        staggerChildren: 0.13,
+        delayChildren: 0.12
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 34, scale: 0.96 },
     visible: { 
       opacity: 1, 
       y: 0,
+      scale: 1,
       transition: { 
-        duration: 0.7, 
-        ease: [0.215, 0.61, 0.355, 1] 
+        duration: 0.75,
+        ease: [0.22, 1, 0.36, 1]
       }
     }
   };

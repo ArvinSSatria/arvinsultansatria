@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { MotionConfig } from 'framer-motion';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
 import { ReactLenis } from 'lenis/react';
 import Navbar from './components/Navbar';
@@ -41,11 +42,13 @@ function App() {
   };
 
   return (
-    <ReactLenis root options={lenisOptions}>
-      <ThemeProvider>
-        <AppContent />
-      </ThemeProvider>
-    </ReactLenis>
+    <MotionConfig reducedMotion="user">
+      <ReactLenis root options={lenisOptions}>
+        <ThemeProvider>
+          <AppContent />
+        </ThemeProvider>
+      </ReactLenis>
+    </MotionConfig>
   );
 }
 

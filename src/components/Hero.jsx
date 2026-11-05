@@ -47,12 +47,15 @@ const Hero = () => {
           animate="visible"
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.12 } }
+            visible: { opacity: 1, transition: { staggerChildren: 0.14, delayChildren: 0.08 } }
           }}
         >
           {/* Main heading */}
           <motion.h1
-            variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6 } } }}
+            variants={{
+              hidden: { opacity: 0, y: 34, scale: 0.96, filter: 'blur(10px)' },
+              visible: { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } }
+            }}
             className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9] mb-6"
           >
             <span className="text-zinc-900 dark:text-zinc-100">{personal.name.split(' ')[0]}</span>
@@ -62,7 +65,7 @@ const Hero = () => {
 
           {/* Typing role */}
           <motion.div
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            variants={{ hidden: { opacity: 0, y: 18, filter: 'blur(6px)' }, visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6 } } }}
             className="mb-6"
           >
             <span className="font-mono text-lg md:text-xl text-zinc-400 dark:text-zinc-500">
@@ -73,7 +76,7 @@ const Hero = () => {
 
           {/* Description */}
           <motion.p
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            variants={{ hidden: { opacity: 0, y: 22, filter: 'blur(6px)' }, visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.65 } } }}
             className="text-base md:text-lg text-zinc-500 max-w-xl mx-auto leading-relaxed mb-10"
           >
             Informatics graduate from Universitas Ahmad Dahlan with hands-on
@@ -82,29 +85,69 @@ const Hero = () => {
 
           {/* CTA + Socials */}
           <motion.div
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+            variants={{ hidden: { opacity: 0, y: 18, scale: 0.98 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6 } } }}
+            className="flex flex-row items-center justify-center gap-2 sm:gap-4 mb-12"
           >
             <Link
               to="/projects"
-              className="group px-7 py-3.5 rounded-full bg-zinc-800 dark:bg-zinc-100 text-white dark:text-zinc-900 font-semibold text-sm hover:bg-zinc-900 dark:hover:bg-zinc-200 transition-all duration-300 hover:shadow-lg hover:shadow-black/10"
+              className="inline-flex items-start gap-0 group transition-all cursor-pointer"
             >
-              View My Work
+              <span className="rounded-full font-semibold transition-transform duration-300 group-hover:scale-[0.98] shadow-sm px-3 py-3 text-xs sm:px-7 sm:py-3.5 sm:text-sm bg-zinc-800 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-zinc-900 dark:hover:bg-zinc-200">
+                View My Work
+              </span>
+              <span className="flex items-center justify-center rounded-full transition-transform duration-300 group-hover:scale-[1.05] shadow-sm shrink-0 relative z-10 w-8 h-8 sm:w-10 sm:h-10 bg-zinc-800 dark:bg-zinc-100 text-white dark:text-zinc-900 hover:bg-zinc-900 dark:hover:bg-zinc-200">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-transform duration-300 group-hover:translate-x-[2px] group-hover:-translate-y-[2px]"
+                  aria-hidden="true"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </span>
             </Link>
             <a
               href={personal.cvPath}
               target="_blank"
               rel="noreferrer"
-              className="px-7 py-3.5 rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 font-medium text-sm hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-white transition-all duration-300"
+              className="inline-flex items-start gap-0 group transition-all cursor-pointer"
               aria-label="Download Curriculum Vitae"
             >
-              Download CV
+              <span className="rounded-full font-medium transition-transform duration-300 group-hover:scale-[0.98] px-3 py-3 text-xs sm:px-7 sm:py-3.5 sm:text-sm border border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-white">
+                Download CV
+              </span>
+              <span className="flex items-center justify-center rounded-full border border-zinc-300 dark:border-zinc-800 text-zinc-600 dark:text-zinc-400 transition-transform duration-300 group-hover:scale-[1.05] shrink-0 relative z-10 w-8 h-8 sm:w-10 sm:h-10 hover:border-zinc-400 dark:hover:border-zinc-600 hover:text-zinc-900 dark:hover:text-white">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="transition-transform duration-300 group-hover:translate-x-[2px] group-hover:-translate-y-[2px]"
+                  aria-hidden="true"
+                >
+                  <path d="M7 7h10v10" />
+                  <path d="M7 17 17 7" />
+                </svg>
+              </span>
             </a>
           </motion.div>
 
           {/* Social icons */}
           <motion.div
-            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            variants={{ hidden: { opacity: 0, y: 14, scale: 0.96 }, visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55 } } }}
             className="flex items-center justify-center gap-4"
           >
             {portfolioData.socials.map((s, i) => (

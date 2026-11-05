@@ -9,10 +9,10 @@ const Contact = () => {
     <section id="contact" className="py-24 md:py-32 border-t border-zinc-200 dark:border-zinc-800/30">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className="font-mono text-xs text-accent tracking-widest uppercase mb-4 block">
             // get in touch
@@ -28,10 +28,10 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
           <motion.div
             className="space-y-8"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: -28, filter: 'blur(7px)' }}
+            whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            transition={{ duration: 0.65, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           >
             <div>
               <p className="text-zinc-500 dark:text-zinc-400 leading-relaxed mb-6">
@@ -94,10 +94,10 @@ const Contact = () => {
               )}`;
               window.open(whatsappUrl, '_blank');
             }}
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, x: 28, filter: 'blur(7px)' }}
+            whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.65, delay: 0.16, ease: [0.22, 1, 0.36, 1] }}
           >
             <div>
               <label className="block text-[11px] font-mono text-zinc-400 dark:text-zinc-600 uppercase tracking-wider mb-2">Name</label>

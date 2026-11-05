@@ -18,10 +18,10 @@ const About = () => {
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           className="mb-12 md:mb-16"
         >
           <span className="font-mono text-xs text-accent tracking-widest uppercase mb-4 block">
@@ -37,10 +37,10 @@ const About = () => {
 
         {/* Content */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 26, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
         >
 
           <div className="grid md:grid-cols-5 gap-12 lg:gap-16">

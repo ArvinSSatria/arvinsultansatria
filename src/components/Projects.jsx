@@ -35,10 +35,10 @@ const Projects = () => {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: [0.215, 0.61, 0.355, 1] }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className="font-mono text-xs text-accent tracking-widest uppercase mb-4 block">
             // selected work
@@ -65,8 +65,8 @@ const Projects = () => {
                   key={project.id}
                   data-project-index={index}
                   className="group relative grid md:grid-cols-2 gap-6 p-6 rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-50/30 dark:bg-zinc-900/20 hover:bg-zinc-100/50 dark:hover:bg-zinc-900/40 hover:border-zinc-300 dark:hover:border-zinc-700/60 transition-colors duration-500 will-change-transform"
-                  initial={isExtra ? { opacity: 0, y: 20 } : { opacity: 0, y: 48 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={isExtra ? { opacity: 0, y: 20, scale: 0.98, filter: 'blur(6px)' } : { opacity: 0, y: 44, scale: 0.96, filter: 'blur(8px)' }}
+                  whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
                   exit={{
                     opacity: 0,
                     y: 20,
@@ -74,9 +74,9 @@ const Projects = () => {
                   }}
                   viewport={{ once: true, margin: "-50px" }}
                   transition={{
-                    duration: 0.65,
+                    duration: 0.75,
                     delay: entryDelay,
-                    ease: [0.215, 0.61, 0.355, 1],
+                    ease: [0.22, 1, 0.36, 1],
                   }}
                 >
                   {/* Project image */}

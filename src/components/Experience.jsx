@@ -8,10 +8,10 @@ const Experience = () => {
     <section id="experience" className="py-24 md:py-32 border-t border-zinc-200 dark:border-zinc-800/30">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
         >
           <span className="font-mono text-xs text-accent tracking-widest uppercase mb-4 block">
             // experience
@@ -32,10 +32,10 @@ const Experience = () => {
               <motion.div
                 key={index}
                 className="relative pl-10 md:pl-24"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, x: -24, filter: 'blur(6px)' }}
+                whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.65, delay: index * 0.12, ease: [0.22, 1, 0.36, 1] }}
               >
                 <div className="absolute left-0 md:left-8 top-1 w-px h-full">
                   <div className="absolute -left-[5px] top-2 w-[11px] h-[11px] rounded-full border-2 border-accent bg-white dark:bg-zinc-950" />

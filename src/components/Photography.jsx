@@ -37,10 +37,10 @@ const Photography = ({ preview = false }) => {
 
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, scale: 0.98, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-6"
         >
           <div className="max-w-xl">
@@ -75,12 +75,13 @@ const Photography = ({ preview = false }) => {
           {displayPhotos.map((photo, index) => (
             <motion.div
               key={photo.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 36, scale: 0.96, filter: 'blur(7px)' }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
               viewport={{ once: true }}
               transition={{
-                duration: 0.6,
-                delay: index * 0.08
+                duration: 0.7,
+                delay: index * 0.1,
+                ease: [0.22, 1, 0.36, 1]
               }}
               onClick={() => setSelectedPhoto(photo)}
               className={`relative group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800/40 bg-zinc-100 dark:bg-zinc-900/50 cursor-pointer ${photo.span}`}
