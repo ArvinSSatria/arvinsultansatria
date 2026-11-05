@@ -86,7 +86,7 @@ const Navbar = () => {
 
       {/* ── Mobile: Floating centered pill (Bottom) ── */}
       <nav
-        className="fixed bottom-1 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center justify-between p-2 px-3 rounded-full border border-zinc-200/50 dark:border-zinc-800/40 bg-white/50 dark:bg-zinc-800/50 backdrop-blur-md w-[85vw] max-w-[320px]"
+        className="fixed bottom-3 left-1/2 -translate-x-1/2 z-50 flex md:hidden items-center justify-between p-2 px-3 rounded-full border border-zinc-200/50 dark:border-zinc-800/40 bg-white/50 dark:bg-zinc-800/50 backdrop-blur-md w-[85vw] max-w-[320px]"
       >
         {navLinks.map((link) => renderNavLink(link, true))}
       </nav>
